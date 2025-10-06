@@ -5,53 +5,189 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>AI Security Onboarding Checklist — Fridrick Cyber Tech</title>
 
-<!-- SECURITY HEADERS (apply via server config for production)
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Referrer-Policy: strict-origin-when-cross-origin
-Permissions-Policy: camera=(), microphone=(), geolocation=()
--->
-
-<!-- Example meta CSP for local demo -->
+<!-- Enhanced Security Headers -->
 <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
 <style>
 :root{
  --primary:#1b263b;--secondary:#415a77;--accent:#00a8e8;--success:#28a745;
  --warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#212529;
 }
-body{background:#f5f7fa;color:var(--dark);font-family:"Segoe UI",sans-serif;margin:0;padding:0;}
-.container{max-width:1200px;margin:20px auto;background:#fff;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,.1);overflow:hidden;}
-header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:25px;text-align:center;}
-header h1{margin:0;font-size:28px;}
-header p{margin:5px 0 0;font-size:15px;opacity:.9;}
-.filter-bar{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;background:#eef1f5;padding:10px 20px;border-bottom:1px solid #ddd;}
-.filter-bar input{padding:8px 12px;border:1px solid #ccc;border-radius:4px;width:250px;}
-.filter-btn{padding:8px 12px;border:1px solid #ccc;background:#fff;border-radius:4px;cursor:pointer;margin-right:6px;}
-.filter-btn.active{background:var(--accent);color:white;border-color:var(--accent);}
-.progress-container{padding:15px 20px;background:#fafafa;border-bottom:1px solid #ddd;}
-.progress-text{display:flex;justify-content:space-between;font-size:14px;}
-.progress-bar{background:#e9ecef;border-radius:6px;overflow:hidden;height:10px;margin-top:5px;}
-.progress-fill{background:var(--success);height:10px;width:0%;transition:width .4s;}
-table{width:100%;border-collapse:collapse;}
-th{background:#f2f2f2;padding:12px;text-align:left;border-bottom:2px solid #ddd;}
-td{padding:12px;border-bottom:1px solid #eee;vertical-align:top;}
-.phase-header{background:var(--primary);color:white;font-weight:bold;font-size:17px;}
-.status-badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;}
-.status-not-started{background:#f8f9fa;color:#6c757d;border:1px solid #dee2e6;}
-.status-in-progress{background:#fff3cd;color:#856404;}
-.status-completed{background:#d4edda;color:#155724;}
-.priority-high{border-left:4px solid var(--danger);}
-.priority-medium{border-left:4px solid var(--warning);}
-.priority-low{border-left:4px solid var(--success);}
-button.action{background:none;border:none;color:var(--accent);cursor:pointer;}
-.controls{display:flex;gap:10px;padding:15px 20px;border-top:1px solid #ddd;background:#fff;}
-button.export,button.preview{padding:10px 14px;border:none;border-radius:6px;cursor:pointer;}
-button.export{background:var(--accent);color:white;}
-button.preview{background:#fff;border:1px solid #ccc;}
-footer{background:#f2f2f2;padding:15px;text-align:center;font-size:13px;color:#555;}
+body{
+ background:#f5f7fa;
+ color:var(--dark);
+ font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+ margin:0;
+ padding:0;
+ line-height:1.5;
+}
+.container{
+ max-width:1200px;
+ margin:20px auto;
+ background:#fff;
+ border-radius:10px;
+ box-shadow:0 3px 8px rgba(0,0,0,.1);
+ overflow:hidden;
+}
+header{
+ background:linear-gradient(120deg,var(--primary),var(--secondary));
+ color:white;
+ padding:25px;
+ text-align:center;
+}
+header h1{
+ margin:0;
+ font-size:28px;
+}
+header p{
+ margin:5px 0 0;
+ font-size:15px;
+ opacity:.9;
+}
+.filter-bar{
+ display:flex;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ align-items:center;
+ background:#eef1f5;
+ padding:10px 20px;
+ border-bottom:1px solid #ddd;
+}
+.filter-bar input{
+ padding:8px 12px;
+ border:1px solid #ccc;
+ border-radius:4px;
+ width:250px;
+}
+.filter-btn{
+ padding:8px 12px;
+ border:1px solid #ccc;
+ background:#fff;
+ border-radius:4px;
+ cursor:pointer;
+ margin-right:6px;
+ transition:all 0.2s;
+}
+.filter-btn:hover{
+ background:#f0f0f0;
+}
+.filter-btn.active{
+ background:var(--accent);
+ color:white;
+ border-color:var(--accent);
+}
+.progress-container{
+ padding:15px 20px;
+ background:#fafafa;
+ border-bottom:1px solid #ddd;
+}
+.progress-text{
+ display:flex;
+ justify-content:space-between;
+ font-size:14px;
+}
+.progress-bar{
+ background:#e9ecef;
+ border-radius:6px;
+ overflow:hidden;
+ height:10px;
+ margin-top:5px;
+}
+.progress-fill{
+ background:var(--success);
+ height:10px;
+ width:0%;
+ transition:width .4s;
+}
+table{
+ width:100%;
+ border-collapse:collapse;
+}
+th{
+ background:#f2f2f2;
+ padding:12px;
+ text-align:left;
+ border-bottom:2px solid #ddd;
+}
+td{
+ padding:12px;
+ border-bottom:1px solid #eee;
+ vertical-align:top;
+}
+.phase-header{
+ background:var(--primary);
+ color:white;
+ font-weight:bold;
+ font-size:17px;
+ position:sticky;
+ top:0;
+}
+.status-badge{
+ display:inline-block;
+ padding:4px 10px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:600;
+}
+.status-not-started{
+ background:#f8f9fa;
+ color:#6c757d;
+ border:1px solid #dee2e6;
+}
+.status-in-progress{
+ background:#fff3cd;
+ color:#856404;
+}
+.status-completed{
+ background:#d4edda;
+ color:#155724;
+}
+.priority-critical{
+ border-left:4px solid #8b0000;
+}
+.priority-high{
+ border-left:4px solid var(--danger);
+}
+.priority-medium{
+ border-left:4px solid var(--warning);
+}
+.priority-low{
+ border-left:4px solid var(--success);
+}
+.controls{
+ display:flex;
+ gap:10px;
+ padding:15px 20px;
+ border-top:1px solid #ddd;
+ background:#fff;
+}
+footer{
+ background:#f2f2f2;
+ padding:15px;
+ text-align:center;
+ font-size:13px;
+ color:#555;
+}
+@media (max-width: 768px) {
+ .filter-bar{
+   flex-direction:column;
+   gap:10px;
+   align-items:stretch;
+ }
+ .filter-bar input{
+   width:100%;
+ }
+ table{
+   font-size:14px;
+ }
+ th, td{
+   padding:8px;
+ }
+}
 </style>
 </head>
 <body>
@@ -158,17 +294,14 @@ footer{background:#f2f2f2;padding:15px;text-align:center;font-size:13px;color:#5
 </table>
 
 <div class="controls">
-<button id="previewBtn" class="preview">Preview Report</button>
-<button id="exportBtn" class="export">Export to PDF</button>
 <span style="margin-left:auto;font-size:12px;color:#666;">Disclaimer: Do not upload sensitive content.</span>
 </div>
 
 <footer>
-AI Security Onboarding Checklist v1.0 | © 2025 Fridrick Cyber Tech
+AI Security Onboarding Checklist v1.1 | © 2025 Fridrick Cyber Tech
 </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
  const checkboxes=[...document.querySelectorAll(".chk")];
@@ -176,6 +309,12 @@ document.addEventListener("DOMContentLoaded",()=>{
  const progressValue=document.getElementById("progressValue");
  const filters=[...document.querySelectorAll(".filter-btn")];
  const search=document.getElementById("searchBox");
+ 
+ // Initialize all checkboxes as unchecked for security
+ checkboxes.forEach(checkbox => {
+   checkbox.checked = false;
+ });
+ 
  function updateProgress(){
    const total=checkboxes.length,done=checkboxes.filter(c=>c.checked).length;
    const pct=Math.round((done/total)*100)||0;
@@ -183,13 +322,22 @@ document.addEventListener("DOMContentLoaded",()=>{
    progressValue.textContent=pct+"%";
    progressFill.style.background=pct<30?"var(--danger)":pct<70?"var(--warning)":"var(--success)";
  }
+ 
  checkboxes.forEach(c=>c.addEventListener("change",()=>{
    const row=c.closest("tr");
    const badge=row.querySelector(".status-badge");
-   if(c.checked){badge.textContent="Completed";badge.className="status-badge status-completed";row.dataset.status="completed";}
-   else{badge.textContent="Not Started";badge.className="status-badge status-not-started";row.dataset.status="not-started";}
+   if(c.checked){
+     badge.textContent="Completed";
+     badge.className="status-badge status-completed";
+     row.dataset.status="completed";
+   } else {
+     badge.textContent="Not Started";
+     badge.className="status-badge status-not-started";
+     row.dataset.status="not-started";
+   }
    updateProgress();
  }));
+ 
  updateProgress();
 
  filters.forEach(btn=>btn.addEventListener("click",()=>{
@@ -210,36 +358,6 @@ document.addEventListener("DOMContentLoaded",()=>{
      const text=r.textContent.toLowerCase();
      r.style.display=text.includes(t)?"":"none";
    });
- });
-
- function compileReport(){
-   const rows=[...document.querySelectorAll("#checklistTable tbody tr")].filter(r=>!r.classList.contains("phase-header"));
-   let html=`<div style="font-family:Arial;padding:20px;"><h2>AI Security Onboarding Report</h2><p>Generated: ${new Date().toLocaleString()}</p>`;
-   html+=`<table style="width:100%;border-collapse:collapse;font-size:13px"><tr><th style="text-align:left;border-bottom:1px solid #ddd;padding:6px;">Task</th><th>Phase</th><th>Priority</th><th>Status</th><th>ISO Mapping</th></tr>`;
-   rows.forEach(r=>{
-     const tds=r.querySelectorAll("td");
-     html+=`<tr><td style="padding:6px;border-bottom:1px solid #eee;">${tds[1].innerText}</td><td>${tds[2].innerText}</td><td>${tds[3].innerText}</td><td>${tds[0].innerText}</td><td>${tds[4].innerText}</td></tr>`;
-   });
-   html+=`</table><h3 style="margin-top:16px;">Key Recommendations</h3>
-   <ul>
-     <li>Complete governance structure and SoA publication.</li>
-     <li>Perform DPIA before AI deployment with PII data.</li>
-     <li>Require SBOM and vendor security attestations.</li>
-     <li>Implement model signing and adversarial testing routine.</li>
-     <li>Ensure yearly internal audit and management review.</li>
-   </ul><p style="font-size:12px;color:#555;">Generated by Fridrick Cyber Tech — AI Security Checklist Tool</p></div>`;
-   return html;
- }
-
- document.getElementById("previewBtn").addEventListener("click",()=>{
-   const w=window.open("","_blank","noopener");
-   w.document.write(compileReport());
-   w.document.close();
- });
- document.getElementById("exportBtn").addEventListener("click",()=>{
-   const opt={margin:10,filename:"AI_Security_Onboarding_Report.pdf",image:{type:"jpeg",quality:0.98},html2canvas:{scale:2},jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}};
-   const tmp=document.createElement("div");tmp.innerHTML=compileReport();
-   html2pdf().set(opt).from(tmp).save();
  });
 });
 </script>
