@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Security Onboarding Checklist</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .checklist-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .checklist-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .checklist-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .checklist-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .checklist-filters {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 25px;
+            background-color: var(--light);
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover {
+            background: #e9ecef;
+        }
+        
+        .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .search-box {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        .progress-container {
+            padding: 15px 25px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--dark);
+        }
+        
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .checklist-table th {
+            background-color: var(--light);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .checklist-table td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        
+        .phase-header {
+            background-color: var(--primary) !important;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .task-checkbox {
+            margin-right: 12px;
+            margin-top: 3px;
+        }
+        
+        .task-details {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .task-description {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .status-not-started {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+        
+        .status-in-progress {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background-color: #d1edff;
+            color: #0c5460;
+        }
+        
+        .status-critical {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .priority-high {
+            border-left: 4px solid var(--danger);
+        }
+        
+        .priority-medium {
+            border-left: 4px solid var(--warning);
+        }
+        
+        .priority-low {
+            border-left: 4px solid var(--success);
+        }
+        
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--secondary);
+            font-size: 16px;
+        }
+        
+        .checklist-footer {
+            padding: 20px;
+            text-align: center;
+            background-color: var(--light);
+            color: var(--dark);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .checklist-filters {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filter-group {
+                flex-wrap: wrap;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .checklist-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="checklist-container">
+        <div class="checklist-header">
+            <h1>AI Security Onboarding Checklist powered by FRIDRICK CYBER TECH</h1>
+            <p>A comprehensive checklist for securely implementing AI products in your organization</p>
+        </div>
+        
+        <div class="checklist-filters">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All Items</button>
+                <button class="filter-btn" data-filter="not-started">Not Started</button>
+                <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <div class="filter-group">
+                <input type="text" class="search-box" placeholder="Search tasks...">
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-text">
+                <span>Overall Progress</span>
+                <span id="progress-percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th width="5%">Status</th>
+                    <th width="40%">Task</th>
+                    <th width="20%">Phase</th>
+                    <th width="15%">Priority</th>
+                    <th width="20%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Strategy & Governance Phase -->
+                <tr>
+                    <td colspan="5" class="phase-header">Strategy & Governance</td>
+                </tr>
+                <tr class="task-row priority-high" data-phase="strategy" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Establish AI Governance Committee</div>
+                                <div class="task-description">Form a cross-functional team with representatives from Security, Legal, Compliance, and Business Units</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Strategy & Governance</td>
+                    <td>High</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                <tr class="task-row priority-high" data-phase="strategy" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Define AI Risk Appetite</div>
+                                <div class="task-description">Document organizational tolerance for AI-related risks and establish risk thresholds</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Strategy & Governance</td>
+                    <td>High</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                
+                <!-- Vendor & Product Assessment Phase -->
+                <tr>
+                    <td colspan="5" class="phase-header">Vendor & Product Assessment</td>
+                </tr>
+                <tr class="task-row priority-high" data-phase="vendor" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Conduct Vendor Security Review</div>
+                                <div class="task-description">Assess vendor security posture (SOC 2 reports, security certifications, incident history)</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Vendor Assessment</td>
+                    <td>High</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                <tr class="task-row priority-medium" data-phase="vendor" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Require Model Transparency</div>
+                                <div class="task-description">Obtain documentation on model design, data sources, training methods, and limitations</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Vendor Assessment</td>
+                    <td>Medium</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                
+                <!-- Data Security & Privacy Phase -->
+                <tr>
+                    <td colspan="5" class="phase-header">Data Security & Privacy</td>
+                </tr>
+                <tr class="task-row priority-critical" data-phase="data" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Classify AI Data Assets</div>
+                                <div class="task-description">Identify and categorize all data used by AI models (PII, PHI, intellectual property, etc.)</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Data Security</td>
+                    <td>Critical</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                <tr class="task-row priority-high" data-phase="data" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Implement Data Governance Controls</div>
+                                <div class="task-description">Establish access controls, encryption (at-rest/in-transit), and data anonymization where possible</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Data Security</td>
+                    <td>High</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                
+                <!-- Model Integrity & Operations Phase -->
+                <tr>
+                    <td colspan="5" class="phase-header">Model Integrity & Operations</td>
+                </tr>
+                <tr class="task-row priority-high" data-phase="model" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Implement Model Monitoring</div>
+                                <div class="task-description">Set up logging of all model inputs, outputs, and decisions for auditability</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Model Operations</td>
+                    <td>High</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                <tr class="task-row priority-medium" data-phase="model" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Monitor for Model Drift</div>
+                                <div class="task-description">Implement detection for performance degradation and data/model drift over time</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Model Operations</td>
+                    <td>Medium</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                
+                <!-- Human Factors & Compliance Phase -->
+                <tr>
+                    <td colspan="5" class="phase-header">Human Factors & Compliance</td>
+                </tr>
+                <tr class="task-row priority-medium" data-phase="compliance" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Train Developers and Users</div>
+                                <div class="task-description">Provide education on secure and ethical use of AI products</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Compliance</td>
+                    <td>Medium</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+                <tr class="task-row priority-high" data-phase="compliance" data-status="not-started">
+                    <td>
+                        <span class="status-badge status-not-started">Not Started</span>
+                    </td>
+                    <td>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <div class="task-details">
+                                <div class="task-title">Establish Bias Testing Process</div>
+                                <div class="task-description">Create ongoing procedures for testing AI models for fairness and bias</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Compliance</td>
+                    <td>High</td>
+                    <td class="actions">
+                        <button class="action-btn">📝</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="action-btn">📎</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="checklist-footer">
+            <p>AI Security Onboarding Checklist v1.0 | Last Updated: October 2024</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const searchBox = document.querySelector('.search-box');
+            const progressFill = document.getElementById('progress-fill');
+            const progressPercentage = document.getElementById('progress-percentage');
+            
+            // Initialize progress
+            updateProgress();
+            
+            // Add event listeners to checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const row = this.closest('.task-row');
+                    const statusBadge = row.querySelector('.status-badge');
+                    
+                    if (this.checked) {
+                        statusBadge.textContent = 'Completed';
+                        statusBadge.className = 'status-badge status-completed';
+                        row.dataset.status = 'completed';
+                    } else {
+                        statusBadge.textContent = 'Not Started';
+                        statusBadge.className = 'status-badge status-not-started';
+                        row.dataset.status = 'not-started';
+                    }
+                    
+                    updateProgress();
+                });
+            });
+            
+            // Add event listeners to filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    filterTasks(filter);
+                });
+            });
+            
+            // Add event listener to search box
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterTasksBySearch(searchTerm);
+            });
+            
+            // Function to filter tasks by status
+            function filterTasks(filter) {
+                const rows = document.querySelectorAll('.task-row');
+                
+                rows.forEach(row => {
+                    if (filter === 'all') {
+                        row.style.display = '';
+                    } else if (filter === 'not-started' && row.dataset.status === 'not-started') {
+                        row.style.display = '';
+                    } else if (filter === 'in-progress' && row.dataset.status === 'in-progress') {
+                        row.style.display = '';
+                    } else if (filter === 'completed' && row.dataset.status === 'completed') {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Function to filter tasks by search term
+            function filterTasksBySearch(searchTerm) {
+                const rows = document.querySelectorAll('.task-row');
+                
+                rows.forEach(row => {
+                    const taskTitle = row.querySelector('.task-title').textContent.toLowerCase();
+                    const taskDescription = row.querySelector('.task-description').textContent.toLowerCase();
+                    
+                    if (taskTitle.includes(searchTerm) || taskDescription.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Function to update progress
+            function updateProgress() {
+                const totalTasks = checkboxes.length;
+                const completedTasks = document.querySelectorAll('.task-checkbox:checked').length;
+                const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+                
+                progressFill.style.width = `${percentage}%`;
+                progressPercentage.textContent = `${percentage}%`;
+                
+                // Change color based on progress
+                if (percentage < 30) {
+                    progressFill.style.backgroundColor = 'var(--danger)';
+                } else if (percentage < 70) {
+                    progressFill.style.backgroundColor = 'var(--warning)';
+                } else {
+                    progressFill.style.backgroundColor = 'var(--success)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
