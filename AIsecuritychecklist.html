@@ -126,7 +126,7 @@
             <strong>Establish AI governance committee & policy</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Form a cross-functional committee (Security, Compliance, Legal, Product) and publish an AI governance policy.
-              <br><strong>Layman's:</strong> Decide who is in charge of AI decisions and put it in writing.
+              <br><strong>Description's:</strong> Decide who is in charge of AI decisions and put it in writing.
               <br><strong>Example:</strong> Monthly AI steering meetings, formal policy document.
             </div>
           </td>
@@ -152,7 +152,7 @@
             <strong>Define AI risk appetite & classification</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Document acceptable risk thresholds and classification for AI use-cases (safety-critical vs non-critical).
-              <br><strong>Layman:</strong> Decide how much risk you will accept for each AI use.
+              <br><strong>Description:</strong> Decide how much risk you will accept for each AI use.
               <br><strong>Example:</strong> Customer-facing diagnosis = low risk tolerance; internal reports = moderate tolerance.
             </div>
           </td>
@@ -172,7 +172,7 @@
             <strong>Integrate AI into ISMS & assign controls owner</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Map AI assets to ISMS processes, assign owners, and include in management reviews.
-              <br><strong>Layman:</strong> Make AI part of your regular security program and name who owns each control.
+              <br><strong>Description:</strong> Make AI part of your regular security program and name who owns each control.
             </div>
           </td>
           <td>Governance</td>
@@ -191,7 +191,7 @@
             <strong>Vendor security assessment & contract clauses</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Validate vendor certifications (SOC2/ISO), require incident SLA, audit rights, and data handling clauses.
-              <br><strong>Layman:</strong> Check vendor security, and put protections in contracts.
+              <br><strong>Description:</strong> Check vendor security, and put protections in contracts.
               <br><strong>Example:</strong> Right-to-audit clause; data deletion on termination.
             </div>
           </td>
@@ -208,7 +208,7 @@
             <strong>Software Bill of Materials (SBOM) & component provenance</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Request SBOMs for model artifact components and libraries to track vulnerabilities and licensing.
-              <br><strong>Layman:</strong> Ask vendors what components are inside their model so you can patch vulnerabilities.
+              <br><strong>Description:</strong> Ask vendors what components are inside their model so you can patch vulnerabilities.
             </div>
           </td>
           <td>Supply Chain</td>
@@ -224,7 +224,7 @@
             <strong>Vendor change & patch management</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Require vendors to notify of critical vulnerabilities and patch timelines.
-              <br><strong>Layman:</strong> Make sure vendors tell you about security issues and fix them fast.
+              <br><strong>Description:</strong> Make sure vendors tell you about security issues and fix them fast.
             </div>
           </td>
           <td>Vendor</td>
@@ -243,7 +243,7 @@
             <strong>Data inventory & classification for AI datasets</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Maintain catalog of training & inference datasets and label sensitivity (PII, PHI, IP).
-              <br><strong>Layman:</strong> Know what data you use for AI and how sensitive it is.
+              <br><strong>Description:</strong> Know what data you use for AI and how sensitive it is.
               <br><strong>Example:</strong> Customer PII = restricted; public scraped web = public.
             </div>
           </td>
@@ -260,7 +260,7 @@
             <strong>Encryption & key management</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Encrypt sensitive data at rest & in transit; manage keys with KMS/HSM and rotate keys regularly.
-              <br><strong>Layman:</strong> Use locks to protect sensitive data and control who has the keys.
+              <br><strong>Description:</strong> Use locks to protect sensitive data and control who has the keys.
             </div>
           </td>
           <td>Data Protection</td>
@@ -276,7 +276,7 @@
             <strong>Privacy-by-design & consent management</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Implement minimization, anonymization and consent handling; document retention schedules.
-              <br><strong>Layman:</strong> Collect only what you need, and respect user consent.
+              <br><strong>Description:</strong> Collect only what you need, and respect user consent.
               <br><strong>Example:</strong> Anonymize PII before training, delete raw logs after X days.
             </div>
           </td>
@@ -296,7 +296,7 @@
             <strong>Secure SDLC for models (development & CI/CD)</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Enforce secure coding, peer review, automated testing and gated deployments for model changes.
-              <br><strong>Layman:</strong> Build models in a controlled pipeline with checks before releasing.
+              <br><strong>Description:</strong> Build models in a controlled pipeline with checks before releasing.
               <br><strong>Example:</strong> Unit tests, adversarial tests, approval gates in CI/CD.
             </div>
           </td>
@@ -313,7 +313,7 @@
             <strong>Model provenance, signing & artifact integrity</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Maintain provenance metadata, sign artifacts, and verify integrity before deployment.
-              <br><strong>Layman:</strong> Track where models came from and make sure they weren't tampered with.
+              <br><strong>Description:</strong> Track where models came from and make sure they weren't tampered with.
             </div>
           </td>
           <td>Model Security</td>
@@ -329,7 +329,7 @@
             <strong>Monitoring, drift detection & rollback controls</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Implement metrics, alerts, and automated rollback for model performance and fairness drift.
-              <br><strong>Layman:</strong> Watch model results and revert if things get worse.
+              <br><strong>Description:</strong> Watch model results and revert if things get worse.
             </div>
           </td>
           <td>Monitoring</td>
@@ -348,7 +348,7 @@
             <strong>Adversarial & security testing (pen tests + red teaming)</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Schedule periodic adversarial testing including prompt injection, model evasion and API hardening.
-              <br><strong>Layman:</strong> Try to break the model to find weaknesses before attackers do.
+              <br><strong>Description:</strong> Try to break the model to find weaknesses before attackers do.
             </div>
           </td>
           <td>Security Testing</td>
@@ -364,7 +364,7 @@
             <strong>AI incident response plan & playbooks</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Define playbooks for data leak, model theft, bias incidents and model poisoning.
-              <br><strong>Layman:</strong> Have step-by-step instructions when something goes wrong.
+              <br><strong>Description:</strong> Have step-by-step instructions when something goes wrong.
             </div>
           </td>
           <td>Incident Response</td>
@@ -383,7 +383,7 @@
             <strong>AI ethics, privacy & security training</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Regular training for developers, data scientists and business users on secure AI practices.
-              <br><strong>Layman:</strong> Teach staff how to use AI safely and responsibly.
+              <br><strong>Description:</strong> Teach staff how to use AI safely and responsibly.
             </div>
           </td>
           <td>Training</td>
@@ -399,7 +399,7 @@
             <strong>Maintain compliance register & mapping to regulations</strong>
             <div style="color:var(--muted);margin-top:6px">
               Professional: Track legal & regulatory obligations (GDPR, EU AI Act, sector rules) and map controls.
-              <br><strong>Layman:</strong> Keep a list of laws and how you meet them.
+              <br><strong>Description:</strong> Keep a list of laws and how you meet them.
             </div>
           </td>
           <td>Compliance</td>
