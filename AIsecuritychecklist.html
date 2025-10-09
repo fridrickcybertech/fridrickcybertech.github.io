@@ -3,926 +3,615 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AI Security Onboarding Checklist — Fridrick Cyber Tech</title>
-
-<!-- Enhanced Security Headers -->
-<meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none';">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-
+<title>AI Solution Onboarding Security Checklist — Fridrick Cyber Tech</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <style>
-:root{
- --primary:#1b263b;--secondary:#415a77;--accent:#00a8e8;--success:#28a745;
- --warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#212529;
-}
-body{
- background:#f5f7fa;
- color:var(--dark);
- font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
- margin:0;
- padding:0;
- line-height:1.5;
-}
-.container{
- max-width:1400px;
- margin:20px auto;
- background:#fff;
- border-radius:10px;
- box-shadow:0 3px 8px rgba(0,0,0,.1);
- overflow:hidden;
-}
-header{
- background:linear-gradient(120deg,var(--primary),var(--secondary));
- color:white;
- padding:25px;
- text-align:center;
-}
-header h1{
- margin:0;
- font-size:28px;
-}
-header p{
- margin:5px 0 0;
- font-size:15px;
- opacity:.9;
-}
-.filter-bar{
- display:flex;
- justify-content:space-between;
- flex-wrap:wrap;
- align-items:center;
- background:#eef1f5;
- padding:10px 20px;
- border-bottom:1px solid #ddd;
-}
-.filter-bar input{
- padding:8px 12px;
- border:1px solid #ccc;
- border-radius:4px;
- width:250px;
-}
-.filter-btn{
- padding:8px 12px;
- border:1px solid #ccc;
- background:#fff;
- border-radius:4px;
- cursor:pointer;
- margin-right:6px;
- transition:all 0.2s;
-}
-.filter-btn:hover{
- background:#f0f0f0;
-}
-.filter-btn.active{
- background:var(--accent);
- color:white;
- border-color:var(--accent);
-}
-.progress-container{
- padding:15px 20px;
- background:#fafafa;
- border-bottom:1px solid #ddd;
-}
-.progress-text{
- display:flex;
- justify-content:space-between;
- font-size:14px;
-}
-.progress-bar{
- background:#e9ecef;
- border-radius:6px;
- overflow:hidden;
- height:10px;
- margin-top:5px;
-}
-.progress-fill{
- background:var(--success);
- height:10px;
- width:0%;
- transition:width .4s;
-}
-table{
- width:100%;
- border-collapse:collapse;
-}
-th{
- background:#f2f2f2;
- padding:12px;
- text-align:left;
- border-bottom:2px solid #ddd;
-}
-td{
- padding:12px;
- border-bottom:1px solid #eee;
- vertical-align:top;
-}
-.phase-header{
- background:var(--primary);
- color:white;
- font-weight:bold;
- font-size:17px;
- position:sticky;
- top:0;
-}
-.status-select{
- width: 100%;
- padding: 6px;
- border-radius: 4px;
- font-size: 12px;
- font-weight: 600;
- cursor: pointer;
- border: 1px solid #ddd;
-}
-.status-not-started{
- background:#f8f9fa;
- color:#6c757d;
-}
-.status-in-progress{
- background:#fff3cd;
- color:#856404;
-}
-.status-completed{
- background:#d4edda;
- color:#155724;
-}
-.priority-critical{
- border-left:4px solid #8b0000;
-}
-.priority-high{
- border-left:4px solid var(--danger);
-}
-.priority-medium{
- border-left:4px solid var(--warning);
-}
-.priority-low{
- border-left:4px solid var(--success);
-}
-.controls{
- display:flex;
- gap:10px;
- padding:15px 20px;
- border-top:1px solid #ddd;
- background:#fff;
-}
-.download-btn, .save-btn {
- padding: 8px 16px;
- background: var(--accent);
- color: white;
- border: none;
- border-radius: 4px;
- cursor: pointer;
- font-weight: 600;
- transition: background 0.2s;
-}
-.download-btn:hover, .save-btn:hover {
- background: #0090cc;
-}
-.save-btn {
- background: var(--success);
-}
-.save-btn:hover {
- background: #218838;
-}
-.remarks-input {
- width: 100%;
- padding: 8px;
- border: 1px solid #ccc;
- border-radius: 4px;
- font-family: inherit;
- font-size: 14px;
- resize: vertical;
- min-height: 60px;
-}
-.evidence-select {
- width: 100%;
- padding: 8px;
- border: 1px solid #ccc;
- border-radius: 4px;
- font-family: inherit;
- font-size: 14px;
-}
-.evidence-other-input {
- margin-top: 8px;
- width: 100%;
- padding: 8px;
- border: 1px solid #ccc;
- border-radius: 4px;
- display: none;
-}
-footer{
- background:#f2f2f2;
- padding:15px;
- text-align:center;
- font-size:13px;
- color:#555;
-}
-@media (max-width: 768px) {
- .filter-bar{
-   flex-direction:column;
-   gap:10px;
-   align-items:stretch;
- }
- .filter-bar input{
-   width:100%;
- }
- table{
-   font-size:14px;
- }
- th, td{
-   padding:8px;
- }
-}
+  /* Basic reset & typography */
+  :root{
+    --primary:#0b5ed7; --dark:#111827; --muted:#6b7280; --card:#ffffff;
+    --success:#16a34a; --warning:#f59e0b; --danger:#dc2626;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#f3f6fb;color:var(--dark);-webkit-font-smoothing:antialiased}
+  a{color:var(--primary)}
+  header{background:#0b1220;color:#fff;padding:18px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+  header img{height:56px;width:auto}
+  header .titles{display:flex;flex-direction:column;align-items:center}
+  header h1{margin:0;font-size:18px;letter-spacing:.2px}
+  header p{margin:2px 0 0;font-size:13px;color:#cfd8e3}
+
+  .wrap{max-width:var(--maxw);margin:20px auto;padding:18px}
+  .card{background:var(--card);border-radius:10px;padding:18px;box-shadow:0 6px 20px rgba(8,15,32,0.06)}
+
+  /* toolbar */
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .left-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .filter-btn{padding:8px 12px;border-radius:8px;border:1px solid #e6e9ef;background:#f8fafc;cursor:pointer;font-weight:600}
+  .filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+  #search{padding:8px 12px;border-radius:8px;border:1px solid #e6e9ef;width:320px;max-width:40vw}
+  .progress-wrap{display:flex;align-items:center;gap:12px}
+  .progress-bar{height:12px;width:220px;background:#eef2ff;border-radius:999px;overflow:hidden}
+  .progress-fill{height:100%;width:0;background:var(--success);transition:width .35s}
+  .progress-text{font-size:13px;color:var(--muted)}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+  thead th{background:#071033;color:#fff;padding:10px;text-align:left;position:sticky;top:0;z-index:2}
+  th,td{padding:10px;border-bottom:1px solid #edf2f7;vertical-align:top}
+  tr.phase-row td{background:#f1f7ff;font-weight:700;color:#04244b}
+  select.status-select, select.evidence-select, textarea.remarks, input.evidence-other{width:100%;padding:8px;border-radius:6px;border:1px solid #e6e9ef;font-size:13px}
+  textarea.remarks{min-height:60px;resize:vertical}
+  .evidence-other{display:none;margin-top:8px}
+
+  /* controls bottom */
+  .controls{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+  .btn{background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+  .btn.secondary{background:#f3f4f6;color:#111;border:1px solid #e6e9ef}
+  .small{font-size:13px;padding:8px 10px}
+
+  /* responsive stacked rows on small screens */
+  @media (max-width:900px){
+    thead{display:none}
+    table,tbody,thead,tr,td{display:block;width:100%}
+    tr{margin-bottom:12px;border-radius:10px;background:#fff;padding:8px;border:1px solid #f0f3f8}
+    td{display:flex;justify-content:space-between;padding:6px 8px;border-bottom:none}
+    td[data-label]{flex-basis:40%;font-weight:600;color:#334155}
+    td > *{flex-basis:58%}
+    .evidence-other{width:100%}
+  }
+
+  footer{margin-top:20px;text-align:center;color:#6b7280;font-size:13px;padding:18px}
+  .note{font-size:13px;color:var(--muted);margin-top:6px}
 </style>
 </head>
 <body>
-<div class="container">
+
 <header>
-<h1>AI Security Onboarding Checklist</h1>
-<p>Fridrick Cyber Tech — Aligning with ISO 27001 & ISO 42001 standards</p>
+  <img src="https://fridrickcybertech.com/assets/logo.png" alt="Fridrick Cyber Tech Logo" onerror="this.style.display='none'">
+  <div class="titles">
+    <h1>AI Solution Onboarding Security Checklist</h1>
+    <p>FRIDRICK CYBER TECH — solution for AI solution onboarding</p>
+  </div>
 </header>
 
-<div class="filter-bar">
-<div>
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="not-started">Not Started</button>
-  <button class="filter-btn" data-filter="in-progress">In Progress</button>
-  <button class="filter-btn" data-filter="completed">Completed</button>
-</div>
-<input id="searchBox" type="text" placeholder="Search tasks...">
-</div>
+<div class="wrap">
+  <div class="card">
 
-<div class="progress-container">
-  <div class="progress-text"><span>Progress</span><span id="progressValue">0%</span></div>
-  <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-</div>
+    <!-- toolbar -->
+    <div class="toolbar" role="toolbar" aria-label="toolbar">
+      <div class="left-controls">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="not-started">Not Started</button>
+        <button class="filter-btn" data-filter="in-progress">In Progress</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+        <input id="search" placeholder="Search tasks, ISO, evidence, remarks...">
+      </div>
 
-<table id="checklistTable">
-<thead><tr><th>Status</th><th>Task</th><th>Phase</th><th>Priority</th><th>ISO Mapping</th><th>Evidence</th><th>Remarks</th></tr></thead>
-<tbody>
+      <div class="progress-wrap" aria-hidden="false">
+        <div class="progress-bar" title="Overall progress">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="progress-text"><span id="progressValue">0%</span></div>
+      </div>
+    </div>
 
-<tr><td colspan="7" class="phase-header">1. Governance & Risk Management</td></tr>
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Establish AI Governance Committee — define roles and responsibilities.</td>
-<td>Governance</td><td>High</td><td>ISO 27001 Clauses 4-5; ISO 42001 4.3</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Policy Document">Policy Document</option>
-    <option value="Committee Charter">Committee Charter</option>
-    <option value="Meeting Minutes">Meeting Minutes</option>
-    <option value="Role Definition Document">Role Definition Document</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+    <!-- checklist table -->
+    <table id="checklist">
+      <thead>
+        <tr>
+          <th style="width:120px">Status</th>
+          <th>Checklist item (Professional & plain language + example)</th>
+          <th style="width:120px">Domain</th>
+          <th style="width:90px">Priority</th>
+          <th style="width:220px">ISO mapping (27001 / 42001)</th>
+          <th style="width:200px">Evidence</th>
+          <th style="width:180px">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
 
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Define AI Risk Assessment Method and Register.</td>
-<td>Risk Mgmt</td><td>High</td><td>ISO 27001 6.1; ISO 42001 8.3</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Risk Assessment Report">Risk Assessment Report</option>
-    <option value="Risk Register">Risk Register</option>
-    <option value="Methodology Document">Methodology Document</option>
-    <option value="Risk Treatment Plan">Risk Treatment Plan</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <!-- 1 Governance & Risk Management (multiple detailed items) -->
+        <tr class="phase-row"><td colspan="7">Governance & Risk Management</td></tr>
 
-<tr class="priority-medium" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Publish Statement of Applicability (SoA) mapping controls to risks.</td>
-<td>Governance</td><td>Medium</td><td>ISO 27001 6.1.3</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Statement of Applicability">Statement of Applicability</option>
-    <option value="Control Mapping Document">Control Mapping Document</option>
-    <option value="Risk-Control Matrix">Risk-Control Matrix</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td data-label="Status">
+            <select class="status-select" aria-label="Status">
+              <option value="not-started" selected>Not Started</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </td>
+          <td data-label="Checklist">
+            <strong>Establish AI governance committee & policy</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Form a cross-functional committee (Security, Compliance, Legal, Product) and publish an AI governance policy.
+              <br><strong>Layman's:</strong> Decide who is in charge of AI decisions and put it in writing.
+              <br><strong>Example:</strong> Monthly AI steering meetings, formal policy document.
+            </div>
+          </td>
+          <td data-label="Domain">Governance</td>
+          <td data-label="Priority">High</td>
+          <td data-label="ISO">ISO/IEC 27001 Clauses 4–5; ISO/IEC 42001: 4.3, 5.3</td>
+          <td data-label="Evidence">
+            <select class="evidence-select">
+              <option value="">-- Select evidence --</option>
+              <option>Governance Policy</option>
+              <option>Committee Charter</option>
+              <option>Meeting Minutes</option>
+              <option>Other</option>
+            </select>
+            <input class="evidence-other" placeholder="If Other, specify...">
+          </td>
+          <td data-label="Remarks"><textarea class="remarks" placeholder="Notes..."></textarea></td>
+        </tr>
 
-<tr class="priority-low" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Conduct annual Management Review of AI security program.</td>
-<td>Governance</td><td>Low</td><td>ISO 27001 9.3</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Management Review Minutes">Management Review Minutes</option>
-    <option value="Performance Reports">Performance Reports</option>
-    <option value="Action Item Tracking">Action Item Tracking</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option value="not-started">Not Started</option><option value="in-progress">In Progress</option><option value="completed">Completed</option></select></td>
+          <td>
+            <strong>Define AI risk appetite & classification</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Document acceptable risk thresholds and classification for AI use-cases (safety-critical vs non-critical).
+              <br><strong>Layman:</strong> Decide how much risk you will accept for each AI use.
+              <br><strong>Example:</strong> Customer-facing diagnosis = low risk tolerance; internal reports = moderate tolerance.
+            </div>
+          </td>
+          <td>Governance</td>
+          <td>High</td>
+          <td>ISO 27001: Clause 6.1, A.5.4; ISO 42001: 6.1</td>
+          <td>
+            <select class="evidence-select"><option>-- Select --</option><option>Risk Appetite Statement</option><option>Use-case Classification</option><option>Other</option></select>
+            <input class="evidence-other" placeholder="Other evidence...">
+          </td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr><td colspan="7" class="phase-header">2. Vendor & Supply-Chain Security</td></tr>
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Perform Vendor Security Due Diligence (SOC 2, ISO certs, pen-test summary).</td>
-<td>Vendor</td><td>High</td><td>ISO 27001 A.5.19; A.5.20</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Vendor Assessment Reports">Vendor Assessment Reports</option>
-    <option value="SOC 2 Reports">SOC 2 Reports</option>
-    <option value="ISO Certificates">ISO Certificates</option>
-    <option value="Penetration Test Reports">Penetration Test Reports</option>
-    <option value="Due Diligence Checklist">Due Diligence Checklist</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Integrate AI into ISMS & assign controls owner</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Map AI assets to ISMS processes, assign owners, and include in management reviews.
+              <br><strong>Layman:</strong> Make AI part of your regular security program and name who owns each control.
+            </div>
+          </td>
+          <td>Governance</td>
+          <td>Medium</td>
+          <td>ISO 27001: Clauses 4–10, A.5–A.18; ISO 42001: 4.3–10</td>
+          <td><select class="evidence-select"><option>ISMS Update</option><option>Owner Matrix</option><option>Mgmt Review Minutes</option><option>Other</option></select><input class="evidence-other" placeholder="Other evidence..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Require Software Bill of Materials (SBOM) & Component Provenance.</td>
-<td>Vendor</td><td>High</td><td>ISO 42001 8.2.4</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="SBOM Documents">SBOM Documents</option>
-    <option value="Component Provenance Records">Component Provenance Records</option>
-    <option value="Vendor Contracts">Vendor Contracts</option>
-    <option value="Supply Chain Policy">Supply Chain Policy</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <!-- Vendor & Supply Chain Security: extended -->
+        <tr class="phase-row"><td colspan="7">Vendor & Supply Chain Security</td></tr>
 
-<tr class="priority-medium" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Include contractual clauses — incident SLA, right to audit, sub-processors.</td>
-<td>Vendor</td><td>Medium</td><td>ISO 27001 A.5.21</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Contract Documents">Contract Documents</option>
-    <option value="SLA Agreements">SLA Agreements</option>
-    <option value="Right to Audit Clauses">Right to Audit Clauses</option>
-    <option value="Sub-processor Lists">Sub-processor Lists</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Vendor security assessment & contract clauses</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Validate vendor certifications (SOC2/ISO), require incident SLA, audit rights, and data handling clauses.
+              <br><strong>Layman:</strong> Check vendor security, and put protections in contracts.
+              <br><strong>Example:</strong> Right-to-audit clause; data deletion on termination.
+            </div>
+          </td>
+          <td>Vendor</td>
+          <td>High</td>
+          <td>ISO 27001: A.15.1-A.15.2; ISO 42001: 8.4</td>
+          <td><select class="evidence-select"><option>Vendor Assessment</option><option>Contract / SLA</option><option>Audit Report</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr><td colspan="7" class="phase-header">3. Data Protection & Privacy</td></tr>
-<tr class="priority-critical" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Conduct Data Protection Impact Assessment (DPIA) for PII/PHI data.</td>
-<td>Privacy</td><td>Critical</td><td>ISO 42001 8.4; GDPR Art 35</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="DPIA Report">DPIA Report</option>
-    <option value="Privacy Impact Assessment">Privacy Impact Assessment</option>
-    <option value="Data Flow Diagrams">Data Flow Diagrams</option>
-    <option value="Risk Treatment Records">Risk Treatment Records</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Software Bill of Materials (SBOM) & component provenance</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Request SBOMs for model artifact components and libraries to track vulnerabilities and licensing.
+              <br><strong>Layman:</strong> Ask vendors what components are inside their model so you can patch vulnerabilities.
+            </div>
+          </td>
+          <td>Supply Chain</td>
+          <td>High</td>
+          <td>ISO 27001: A.8.1, A.14.2; ISO 42001: 8.2.4</td>
+          <td><select class="evidence-select"><option>SBOM</option><option>Provenance Log</option><option>License Review</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Classify and label AI datasets (PII, IP, public, restricted).</td>
-<td>Data</td><td>High</td><td>ISO 27001 A.5.12</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Data Classification Policy">Data Classification Policy</option>
-    <option value="Data Inventory">Data Inventory</option>
-    <option value="Classification Labels">Classification Labels</option>
-    <option value="Data Handling Procedures">Data Handling Procedures</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Vendor change & patch management</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Require vendors to notify of critical vulnerabilities and patch timelines.
+              <br><strong>Layman:</strong> Make sure vendors tell you about security issues and fix them fast.
+            </div>
+          </td>
+          <td>Vendor</td>
+          <td>Medium</td>
+          <td>ISO 27001: A.12.6; ISO 42001: 8.5</td>
+          <td><select class="evidence-select"><option>Patch Policy</option><option>Vendor Notices</option><option>Change Log</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Apply Encryption in transit/at rest & manage keys via HSM/KMS.</td>
-<td>Data</td><td>High</td><td>ISO 27001 A.8.24</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Encryption Configuration">Encryption Configuration</option>
-    <option value="Key Management Policy">Key Management Policy</option>
-    <option value="HSM/KMS Documentation">HSM/KMS Documentation</option>
-    <option value="Cryptographic Controls">Cryptographic Controls</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <!-- Data Protection & Privacy (detailed items) -->
+        <tr class="phase-row"><td colspan="7">Data Protection & Privacy</td></tr>
 
-<tr><td colspan="7" class="phase-header">4. Model Security & Lifecycle Management</td></tr>
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Implement Model Provenance & Artifact Signing before deployment.</td>
-<td>Model</td><td>High</td><td>ISO 42001 8.2.5</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Model Provenance Records">Model Provenance Records</option>
-    <option value="Artifact Signing Logs">Artifact Signing Logs</option>
-    <option value="Deployment Procedures">Deployment Procedures</option>
-    <option value="Digital Signature Records">Digital Signature Records</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Data inventory & classification for AI datasets</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Maintain catalog of training & inference datasets and label sensitivity (PII, PHI, IP).
+              <br><strong>Layman:</strong> Know what data you use for AI and how sensitive it is.
+              <br><strong>Example:</strong> Customer PII = restricted; public scraped web = public.
+            </div>
+          </td>
+          <td>Data</td>
+          <td>Critical</td>
+          <td>ISO 27001: A.8.2, A.9.1; ISO 42001: 8.5.1</td>
+          <td><select class="evidence-select"><option>Data Inventory</option><option>Classification Matrix</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr class="priority-medium" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Maintain Model Registry with version control and access tracking.</td>
-<td>Model</td><td>Medium</td><td>ISO 42001 8.3.2</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Model Registry">Model Registry</option>
-    <option value="Version Control Records">Version Control Records</option>
-    <option value="Access Logs">Access Logs</option>
-    <option value="Change Management Records">Change Management Records</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Encryption & key management</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Encrypt sensitive data at rest & in transit; manage keys with KMS/HSM and rotate keys regularly.
+              <br><strong>Layman:</strong> Use locks to protect sensitive data and control who has the keys.
+            </div>
+          </td>
+          <td>Data Protection</td>
+          <td>High</td>
+          <td>ISO 27001: A.10.1, A.10.3; ISO 42001: 8.5.2</td>
+          <td><select class="evidence-select"><option>Encryption Config</option><option>KMS Logs</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Conduct Adversarial Testing and remediate vulnerabilities.</td>
-<td>Testing</td><td>High</td><td>ISO 27001 A.12.6</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Adversarial Test Reports">Adversarial Test Reports</option>
-    <option value="Vulnerability Assessment">Vulnerability Assessment</option>
-    <option value="Remediation Records">Remediation Records</option>
-    <option value="Penetration Test Results">Penetration Test Results</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Privacy-by-design & consent management</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Implement minimization, anonymization and consent handling; document retention schedules.
+              <br><strong>Layman:</strong> Collect only what you need, and respect user consent.
+              <br><strong>Example:</strong> Anonymize PII before training, delete raw logs after X days.
+            </div>
+          </td>
+          <td>Privacy</td>
+          <td>High</td>
+          <td>ISO 27001: A.18.1; ISO 42001: 6.1.3, 8.6.1</td>
+          <td><select class="evidence-select"><option>DPIA</option><option>Retention Policy</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr><td colspan="7" class="phase-header">5. Vulnerability & Incident Management</td></tr>
-<tr class="priority-high" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Establish Vulnerability Management policy (SCA, SAST, DAST).</td>
-<td>Ops</td><td>High</td><td>ISO 27001 A.12.6.1</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Vulnerability Management Policy">Vulnerability Management Policy</option>
-    <option value="SCA/SAST/DAST Reports">SCA/SAST/DAST Reports</option>
-    <option value="Scanning Procedures">Scanning Procedures</option>
-    <option value="Tool Configuration">Tool Configuration</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <!-- Model Security & Lifecycle Management (expanded) -->
+        <tr class="phase-row"><td colspan="7">Model Security & Lifecycle Management</td></tr>
 
-<tr class="priority-medium" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Create AI-specific Incident Response playbooks (poisoning, drift attack).</td>
-<td>Ops</td><td>Medium</td><td>ISO 27001 A.5.29</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Incident Response Playbooks">Incident Response Playbooks</option>
-    <option value="AI Attack Scenarios">AI Attack Scenarios</option>
-    <option value="Response Procedures">Response Procedures</option>
-    <option value="Drill/Exercise Records">Drill/Exercise Records</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Secure SDLC for models (development & CI/CD)</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Enforce secure coding, peer review, automated testing and gated deployments for model changes.
+              <br><strong>Layman:</strong> Build models in a controlled pipeline with checks before releasing.
+              <br><strong>Example:</strong> Unit tests, adversarial tests, approval gates in CI/CD.
+            </div>
+          </td>
+          <td>Model Lifecycle</td>
+          <td>High</td>
+          <td>ISO 27001: A.14.2; ISO 42001: 8.1, 8.3</td>
+          <td><select class="evidence-select"><option>SDLC Policy</option><option>Pipeline Config</option><option>Test Reports</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr><td colspan="7" class="phase-header">6. Compliance & Training</td></tr>
-<tr class="priority-medium" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Conduct Security & Ethical AI training for developers and staff.</td>
-<td>Compliance</td><td>Medium</td><td>ISO 27001 A.6.3</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Training Materials">Training Materials</option>
-    <option value="Attendance Records">Attendance Records</option>
-    <option value="Completion Certificates">Completion Certificates</option>
-    <option value="Training Schedule">Training Schedule</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Model provenance, signing & artifact integrity</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Maintain provenance metadata, sign artifacts, and verify integrity before deployment.
+              <br><strong>Layman:</strong> Track where models came from and make sure they weren't tampered with.
+            </div>
+          </td>
+          <td>Model Security</td>
+          <td>High</td>
+          <td>ISO 27001: A.12.7; ISO 42001: 8.2.5</td>
+          <td><select class="evidence-select"><option>Provenance Log</option><option>Signature Records</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-<tr class="priority-medium" data-status="not-started"><td>
-  <select class="status-select status-not-started">
-    <option value="not-started" selected>Not Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="completed">Completed</option>
-  </select>
-</td>
-<td>Perform Internal Audit & continuous improvement review annually.</td>
-<td>Compliance</td><td>Medium</td><td>ISO 27001 9.2</td>
-<td>
-  <select class="evidence-select">
-    <option value="">-- Select Evidence Type --</option>
-    <option value="Internal Audit Report">Internal Audit Report</option>
-    <option value="Audit Findings">Audit Findings</option>
-    <option value="Corrective Action Records">Corrective Action Records</option>
-    <option value="Improvement Plans">Improvement Plans</option>
-    <option value="Other">Other (specify below)</option>
-  </select>
-  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
-</td>
-<td><textarea class="remarks-input" placeholder="Add remarks..."></textarea></td></tr>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Monitoring, drift detection & rollback controls</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Implement metrics, alerts, and automated rollback for model performance and fairness drift.
+              <br><strong>Layman:</strong> Watch model results and revert if things get worse.
+            </div>
+          </td>
+          <td>Monitoring</td>
+          <td>High</td>
+          <td>ISO 27001: A.12.4, A.12.6; ISO 42001: 9.1, 9.2</td>
+          <td><select class="evidence-select"><option>Monitoring Dashboard</option><option>Drift Reports</option><option>Rollback runbook</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
 
-</tbody>
-</table>
+        <!-- Vulnerability & Incident Management (detailed) -->
+        <tr class="phase-row"><td colspan="7">Vulnerability & Incident Management</td></tr>
 
-<div class="controls">
-<button id="downloadReport" class="download-btn">Download Report</button>
-<button id="saveAllData" class="save-btn">Save All Data</button>
-<span style="margin-left:auto;font-size:12px;color:#666;">Disclaimer: Do not upload sensitive content.</span>
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Adversarial & security testing (pen tests + red teaming)</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Schedule periodic adversarial testing including prompt injection, model evasion and API hardening.
+              <br><strong>Layman:</strong> Try to break the model to find weaknesses before attackers do.
+            </div>
+          </td>
+          <td>Security Testing</td>
+          <td>High</td>
+          <td>ISO 27001: A.12.6; ISO 42001: 9.1.2</td>
+          <td><select class="evidence-select"><option>Pen test report</option><option>Red Team findings</option><option>Remediation log</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
+
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>AI incident response plan & playbooks</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Define playbooks for data leak, model theft, bias incidents and model poisoning.
+              <br><strong>Layman:</strong> Have step-by-step instructions when something goes wrong.
+            </div>
+          </td>
+          <td>Incident Response</td>
+          <td>High</td>
+          <td>ISO 27001: A.16.1; ISO 42001: 10.1</td>
+          <td><select class="evidence-select"><option>IR Playbook</option><option>Drill logs</option><option>Incident Reports</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
+
+        <!-- Compliance & Training -->
+        <tr class="phase-row"><td colspan="7">Compliance & Training</td></tr>
+
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>AI ethics, privacy & security training</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Regular training for developers, data scientists and business users on secure AI practices.
+              <br><strong>Layman:</strong> Teach staff how to use AI safely and responsibly.
+            </div>
+          </td>
+          <td>Training</td>
+          <td>Medium</td>
+          <td>ISO 27001: A.7.2 | ISO 42001: 7.3</td>
+          <td><select class="evidence-select"><option>Training plan</option><option>Attendance</option><option>Assessments</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
+
+        <tr data-status="not-started">
+          <td><select class="status-select"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></td>
+          <td>
+            <strong>Maintain compliance register & mapping to regulations</strong>
+            <div style="color:var(--muted);margin-top:6px">
+              Professional: Track legal & regulatory obligations (GDPR, EU AI Act, sector rules) and map controls.
+              <br><strong>Layman:</strong> Keep a list of laws and how you meet them.
+            </div>
+          </td>
+          <td>Compliance</td>
+          <td>High</td>
+          <td>ISO 27001: A.18.1; ISO 42001: 4.2, 9.2</td>
+          <td><select class="evidence-select"><option>Compliance register</option><option>Legal review</option><option>Audit records</option><option>Other</option></select><input class="evidence-other" placeholder="Other..."></td>
+          <td><textarea class="remarks"></textarea></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="controls" role="group" aria-label="actions">
+      <button id="saveBtn" class="btn">Save Progress</button>
+      <button id="clearBtn" class="btn secondary">Clear Saved</button>
+      <button id="exportBtn" class="btn">Export CSV</button>
+      <div style="flex:1"></div>
+      <div class="note">Tip: Save progress to keep your selections and remarks locally (browser storage).</div>
+    </div>
+
+  </div>
 </div>
 
 <footer>
-AI Security Onboarding Checklist v1.2 | © 2025 Fridrick Cyber Tech
+  © 2025 Fridrick Cyber Tech — <a href="https://fridrickcybertech.com">fridrickcybertech.com</a> | contact@fridrickcybertech.com
 </footer>
-</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
- const statusSelects = [...document.querySelectorAll(".status-select")];
- const progressFill = document.getElementById("progressFill");
- const progressValue = document.getElementById("progressValue");
- const filters = [...document.querySelectorAll(".filter-btn")];
- const search = document.getElementById("searchBox");
- const downloadBtn = document.getElementById("downloadReport");
- const saveAllBtn = document.getElementById("saveAllData");
- const evidenceSelects = [...document.querySelectorAll(".evidence-select")];
- const remarksInputs = [...document.querySelectorAll(".remarks-input")];
- 
- // Load saved data if available
- loadSavedData();
- 
- function updateProgress() {
-   const total = statusSelects.length;
-   const completed = statusSelects.filter(select => select.value === "completed").length;
-   const inProgress = statusSelects.filter(select => select.value === "in-progress").length;
-   
-   // Calculate progress: Completed = 1 point, In Progress = 0.5 point
-   const progress = (completed + (inProgress * 0.5)) / total;
-   const pct = Math.round(progress * 100);
-   
-   // Update progress bar
-   progressFill.style.width = pct + "%";
-   progressValue.textContent = pct + "%";
-   
-   // Update progress bar color based on completion
-   if (pct < 30) {
-     progressFill.style.background = "var(--danger)";
-   } else if (pct < 70) {
-     progressFill.style.background = "var(--warning)";
-   } else {
-     progressFill.style.background = "var(--success)";
-   }
-   
-   console.log(`Progress: ${completed} completed, ${inProgress} in progress, ${pct}%`);
- }
- 
- // Add change handlers to status selects
- statusSelects.forEach(select => {
-   select.addEventListener("change", function() {
-     const row = this.closest("tr");
-     row.dataset.status = this.value;
-     
-     // Update the visual styling of the select based on status
-     this.className = `status-select status-${this.value}`;
-     
-     updateProgress();
-     saveData();
-   });
- });
- 
- // Add change handlers to evidence selects to show/hide other input
- evidenceSelects.forEach(select => {
-   select.addEventListener("change", function() {
-     const otherInput = this.parentNode.querySelector(".evidence-other-input");
-     if (this.value === "Other") {
-       otherInput.style.display = "block";
-     } else {
-       otherInput.style.display = "none";
-       otherInput.value = "";
-     }
-     saveData();
-   });
- });
- 
- // Add input handlers to remarks inputs to auto-save
- remarksInputs.forEach(input => {
-   input.addEventListener("input", () => {
-     saveData();
-   });
- });
- 
- // Initialize progress bar
- updateProgress();
+/* ---------- Utility & Data persistence ---------- */
+const STORAGE_KEY = "fridrick_ai_checklist_v2";
 
- // Filter functionality
- filters.forEach(btn => {
-   btn.addEventListener("click", () => {
-     filters.forEach(b => b.classList.remove("active"));
-     btn.classList.add("active");
-     const filter = btn.dataset.filter;
-     
-     document.querySelectorAll("#checklistTable tbody tr").forEach(row => {
-       if (row.classList.contains("phase-header")) return;
-       
-       if (filter === "all") {
-         row.style.display = "";
-       } else {
-         row.style.display = row.dataset.status === filter ? "" : "none";
-       }
-     });
-   });
- });
+/* DOM references */
+const table = document.getElementById("checklist");
+const rows = Array.from(table.querySelectorAll("tbody tr")).filter(r=>!r.classList.contains("phase-row"));
+const statusSelects = rows.map(r => r.querySelector(".status-select"));
+const evidenceSelects = rows.map(r => r.querySelector(".evidence-select"));
+const evidenceOthers = rows.map(r => r.querySelector(".evidence-other"));
+const remarks = rows.map(r => r.querySelector(".remarks"));
+const progressFill = document.getElementById("progressFill");
+const progressValue = document.getElementById("progressValue");
+const filterBtns = Array.from(document.querySelectorAll(".filter-btn"));
+const searchInput = document.getElementById("search");
+const saveBtn = document.getElementById("saveBtn");
+const clearBtn = document.getElementById("clearBtn");
+const exportBtn = document.getElementById("exportBtn");
 
- // Search functionality
- search.addEventListener("input", () => {
-   const term = search.value.toLowerCase();
-   document.querySelectorAll("#checklistTable tbody tr").forEach(row => {
-     if (row.classList.contains("phase-header")) return;
-     const text = row.textContent.toLowerCase();
-     row.style.display = text.includes(term) ? "" : "none";
-   });
- });
- 
- // Save all data functionality
- saveAllBtn.addEventListener("click", () => {
-   saveData();
-   
-   // Show confirmation
-   const originalText = saveAllBtn.textContent;
-   saveAllBtn.textContent = "All Data Saved!";
-   setTimeout(() => {
-     saveAllBtn.textContent = originalText;
-   }, 1500);
- });
- 
- // Save data to localStorage
- function saveData() {
-   const data = {};
-   
-   // Save statuses
-   statusSelects.forEach((select, index) => {
-     data[`status-${index}`] = select.value;
-   });
-   
-   // Save evidence
-   evidenceSelects.forEach((select, index) => {
-     data[`evidence-${index}`] = select.value;
-     // Save other evidence text if applicable
-     const otherInput = select.parentNode.querySelector(".evidence-other-input");
-     data[`evidence-other-${index}`] = otherInput.value;
-   });
-   
-   // Save remarks
-   remarksInputs.forEach((input, index) => {
-     data[`remarks-${index}`] = input.value;
-   });
-   
-   localStorage.setItem("checklistData", JSON.stringify(data));
- }
- 
- // Load data from localStorage
- function loadSavedData() {
-   const savedData = localStorage.getItem("checklistData");
-   if (savedData) {
-     try {
-       const data = JSON.parse(savedData);
-       
-       // Load statuses
-       statusSelects.forEach((select, index) => {
-         if (data[`status-${index}`]) {
-           select.value = data[`status-${index}`];
-           const row = select.closest("tr");
-           row.dataset.status = select.value;
-           select.className = `status-select status-${select.value}`;
-         }
-       });
-       
-       // Load evidence
-       evidenceSelects.forEach((select, index) => {
-         if (data[`evidence-${index}`]) {
-           select.value = data[`evidence-${index}`];
-           // Trigger change event to show/hide other input
-           const event = new Event('change');
-           select.dispatchEvent(event);
-           
-           // Load other evidence text if applicable
-           const otherInput = select.parentNode.querySelector(".evidence-other-input");
-           if (data[`evidence-other-${index}`]) {
-             otherInput.value = data[`evidence-other-${index}`];
-           }
-         }
-       });
-       
-       // Load remarks
-       remarksInputs.forEach((input, index) => {
-         if (data[`remarks-${index}`]) {
-           input.value = data[`remarks-${index}`];
-         }
-       });
-       
-       updateProgress();
-     } catch (e) {
-       console.error("Error loading saved data:", e);
-     }
-   }
- }
- 
- // Download report functionality
- downloadBtn.addEventListener("click", () => {
-   // Generate report content
-   let reportContent = "AI Security Onboarding Checklist Report\n";
-   reportContent += "Generated by Fridrick Cyber Tech\n";
-   reportContent += `Date: ${new Date().toLocaleDateString()}\n`;
-   reportContent += `Overall Progress: ${progressValue.textContent}\n\n`;
-   
-   // Get all phase headers and tasks
-   const phases = document.querySelectorAll('.phase-header');
-   phases.forEach(phase => {
-     const phaseTitle = phase.textContent.trim();
-     reportContent += `${phaseTitle}\n`;
-     reportContent += "=".repeat(phaseTitle.length) + "\n";
-     
-     // Find all tasks in this phase
-     let nextElement = phase.nextElementSibling;
-     while(nextElement && !nextElement.classList.contains('phase-header')) {
-       if(nextElement.dataset.status) {
-         const statusSelect = nextElement.querySelector('.status-select');
-         const status = statusSelect.options[statusSelect.selectedIndex].text;
-         const taskText = nextElement.querySelector('td:nth-child(2)').textContent.trim();
-         const phaseText = nextElement.querySelector('td:nth-child(3)').textContent;
-         const priority = nextElement.querySelector('td:nth-child(4)').textContent;
-         const iso = nextElement.querySelector('td:nth-child(5)').textContent;
-         
-         // Get evidence
-         const evidenceSelect = nextElement.querySelector('.evidence-select');
-         let evidence = evidenceSelect.value;
-         if (evidence === "Other") {
-           const otherInput = evidenceSelect.parentNode.querySelector('.evidence-other-input');
-           evidence = `Other: ${otherInput.value}`;
-         }
-         
-         // Get remarks
-         const remarksInput = nextElement.querySelector('.remarks-input');
-         const remarks = remarksInput ? remarksInput.value : "";
-         
-         reportContent += `- [${status}] ${taskText}\n`;
-         reportContent += `  Priority: ${priority} | Phase: ${phaseText} | ISO: ${iso}\n`;
-         if (evidence) {
-           reportContent += `  Evidence: ${evidence}\n`;
-         }
-         if (remarks) {
-           reportContent += `  Remarks: ${remarks}\n`;
-         }
-         reportContent += "\n";
-       }
-       nextElement = nextElement.nextElementSibling;
-     }
-     reportContent += "\n";
-   });
-   
-   // Add summary
-   const completed = statusSelects.filter(select => select.value === "completed").length;
-   const inProgress = statusSelects.filter(select => select.value === "in-progress").length;
-   const notStarted = statusSelects.filter(select => select.value === "not-started").length;
-   
-   reportContent += "SUMMARY\n";
-   reportContent += "=======\n";
-   reportContent += `Completed: ${completed} tasks\n`;
-   reportContent += `In Progress: ${inProgress} tasks\n`;
-   reportContent += `Not Started: ${notStarted} tasks\n`;
-   reportContent += `Total: ${statusSelects.length} tasks\n`;
-   
-   // Create and download the file
-   const blob = new Blob([reportContent], { type: 'text/plain' });
-   const url = URL.createObjectURL(blob);
-   const a = document.createElement('a');
-   a.href = url;
-   a.download = `AI_Security_Checklist_Report_${new Date().toISOString().split('T')[0]}.txt`;
-   document.body.appendChild(a);
-   a.click();
-   document.body.removeChild(a);
-   URL.revokeObjectURL(url);
- });
+/* Initialize: wire up event handlers */
+function init(){
+  // status change -> update row dataset, progress, save
+  statusSelects.forEach((sel, idx) => {
+    sel.addEventListener("change", () => {
+      const row = rows[idx];
+      row.dataset.status = sel.value.toLowerCase();
+      updateProgress();
+    });
+  });
+
+  // evidence select -> show/hide other input
+  evidenceSelects.forEach((sel, idx) => {
+    sel && sel.addEventListener("change", () => {
+      const other = evidenceOthers[idx];
+      if(!other) return;
+      if(sel.value.toLowerCase() === "other") other.style.display = "block"; else other.style.display = "none";
+    });
+  });
+
+  // filter buttons
+  filterBtns.forEach(btn => btn.addEventListener("click", () => {
+    filterBtns.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    applyFilter(btn.dataset.filter);
+  }));
+
+  // search
+  searchInput.addEventListener("input", () => applySearch(searchInput.value.trim().toLowerCase()));
+
+  // save / clear
+  saveBtn.addEventListener("click", saveData);
+  clearBtn.addEventListener("click", () => {
+    if(!confirm("Clear saved checklist data from this browser?")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+
+  // export
+  exportBtn.addEventListener("click", exportCSV);
+
+  // show evidence-other when appropriate on load
+  evidenceSelects.forEach((sel, idx) => {
+    if(sel && sel.value && sel.value.toLowerCase() === "other"){
+      const other = evidenceOthers[idx];
+      if(other) other.style.display = "block";
+    }
+  });
+
+  // load saved data if any
+  loadData();
+  updateProgress();
+}
+
+/* Progress calculation */
+function updateProgress(){
+  const total = statusSelects.length || 1;
+  const completed = statusSelects.filter(s => s && s.value.toLowerCase() === "completed").length;
+  const inProgress = statusSelects.filter(s => s && (s.value.toLowerCase() === "in progress" || s.value.toLowerCase() === "in-progress")).length;
+  const pct = Math.round(((completed + inProgress*0.5)/total)*100);
+  progressFill.style.width = pct + "%";
+  progressValue.textContent = pct + "%";
+  // color change
+  if(pct < 30) progressFill.style.background = "var(--danger)";
+  else if(pct < 70) progressFill.style.background = "var(--warning)";
+  else progressFill.style.background = "var(--success)";
+}
+
+/* Filtering & Searching */
+function applyFilter(filter){
+  rows.forEach(row => {
+    if(filter === "all") row.style.display = "";
+    else row.style.display = (row.dataset.status === filter) ? "" : "none";
+  });
+}
+
+function applySearch(term){
+  rows.forEach(row => {
+    if(!term) { row.style.display = ""; return; }
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(term) ? "" : "none";
+  });
+}
+
+/* Save / Load functions */
+function saveData(){
+  try{
+    const data = rows.map((row, idx) => {
+      const status = statusSelects[idx] ? statusSelects[idx].value : "";
+      const evidence = evidenceSelects[idx] ? evidenceSelects[idx].value : "";
+      const evidenceOther = evidenceOthers[idx] ? evidenceOthers[idx].value : "";
+      const remark = remarks[idx] ? remarks[idx].value : "";
+      return {status,evidence,evidenceOther,remark};
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({savedAt:new Date().toISOString(), items:data}));
+    // visual confirmation
+    saveBtn.textContent = "Saved ✓";
+    setTimeout(()=> saveBtn.textContent = "Save Progress", 1400);
+  }catch(e){ console.error("Save failed", e); alert("Save failed: " + e.message) }
+}
+
+function loadData(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const parsed = JSON.parse(raw);
+    if(!parsed.items) return;
+    parsed.items.forEach((it, idx) => {
+      if(!rows[idx]) return;
+      if(statusSelects[idx] && it.status) statusSelects[idx].value = it.status;
+      if(evidenceSelects[idx] && it.evidence) evidenceSelects[idx].value = it.evidence;
+      if(evidenceOthers[idx] && it.evidenceOther) {
+        evidenceOthers[idx].value = it.evidenceOther;
+        if(it.evidence && it.evidence.toLowerCase() === "other") evidenceOthers[idx].style.display = "block";
+      }
+      if(remarks[idx] && it.remark) remarks[idx].value = it.remark;
+      // update dataset
+      rows[idx].dataset.status = (statusSelects[idx] ? statusSelects[idx].value.toLowerCase() : "");
+    });
+  }catch(e){ console.error("Load failed", e) }
+}
+
+/* CSV export */
+function exportCSV(){
+  const header = ["Status","Checklist Item","Domain","Priority","ISO Mapping","Evidence","Other Evidence","Remarks"];
+  const csvRows = [header];
+  // Go through table rows in order (exclude phase-row)
+  const allRows = Array.from(document.querySelectorAll("#checklist tbody tr")).filter(r=>!r.classList.contains("phase-row"));
+  allRows.forEach(row => {
+    const tds = row.querySelectorAll("td");
+    if(tds.length < 7) return;
+    const status = tds[0].querySelector("select") ? tds[0].querySelector("select").value : "";
+    const item = tds[1] ? tds[1].innerText.trim().replace(/\r?\n+/g," ") : "";
+    const domain = tds[2] ? tds[2].innerText.trim() : "";
+    const prio = tds[3] ? tds[3].innerText.trim() : "";
+    const iso = tds[4] ? tds[4].innerText.trim() : "";
+    const evidence = tds[5].querySelector("select") ? tds[5].querySelector("select").value : "";
+    const otherEvidence = tds[5].querySelector(".evidence-other") ? tds[5].querySelector(".evidence-other").value : "";
+    const remark = tds[6].querySelector("textarea") ? tds[6].querySelector("textarea").value.replace(/\r?\n+/g," ") : "";
+    csvRows.push([status,item,domain,prio,iso,evidence,otherEvidence,remark]);
+  });
+
+  // convert to CSV string with escaping
+  const csvString = csvRows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const blob = new Blob([csvString], {type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `AI_Onboarding_Checklist_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* ----- initial startup ----- */
+init();
+
+/* update progress when user interacts with selects / textareas (keyboard copy/paste) */
+document.addEventListener('input', (e) => {
+  if(e.target && (e.target.matches('.status-select') || e.target.matches('.remarks') || e.target.matches('.evidence-select') || e.target.matches('.evidence-other'))){
+    updateProgress();
+  }
 });
+
+/* make sure table fits on small screens by adjusting cell labels (done in CSS) */
 </script>
 </body>
 </html>
