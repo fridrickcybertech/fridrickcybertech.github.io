@@ -26,7 +26,7 @@ body{
  line-height:1.5;
 }
 .container{
- max-width:1200px;
+ max-width:1400px;
  margin:20px auto;
  background:#fff;
  border-radius:10px;
@@ -132,6 +132,8 @@ td{
  border-radius:20px;
  font-size:12px;
  font-weight:600;
+ cursor: pointer;
+ transition: all 0.2s;
 }
 .status-not-started{
  background:#f8f9fa;
@@ -164,6 +166,70 @@ td{
  padding:15px 20px;
  border-top:1px solid #ddd;
  background:#fff;
+}
+.download-btn, .save-btn {
+ padding: 8px 16px;
+ background: var(--accent);
+ color: white;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ font-weight: 600;
+ transition: background 0.2s;
+}
+.download-btn:hover, .save-btn:hover {
+ background: #0090cc;
+}
+.save-btn {
+ background: var(--success);
+}
+.save-btn:hover {
+ background: #218838;
+}
+.remarks-section {
+ padding: 10px 15px;
+ background: #f8f9fa;
+ border-top: 1px dashed #ddd;
+ display: none;
+}
+.remarks-section.active {
+ display: table-row;
+}
+.remarks-label {
+ font-weight: 600;
+ font-size: 14px;
+ color: var(--primary);
+ margin-bottom: 5px;
+ display: block;
+}
+.remarks-textarea, .evidence-select {
+ width: 100%;
+ padding: 8px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ font-family: inherit;
+ font-size: 14px;
+}
+.remarks-textarea {
+ resize: vertical;
+ min-height: 80px;
+}
+.evidence-select {
+ min-height: 40px;
+}
+.remarks-actions {
+ margin-top: 8px;
+ display: flex;
+ justify-content: flex-end;
+ gap: 8px;
+}
+.evidence-other-input {
+ margin-top: 8px;
+ width: 100%;
+ padding: 8px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ display: none;
 }
 footer{
  background:#f2f2f2;
@@ -213,151 +279,730 @@ footer{
 </div>
 
 <table id="checklistTable">
-<thead><tr><th>Status</th><th>Task</th><th>Phase</th><th>Priority</th><th>ISO Mapping</th></tr></thead>
+<thead><tr><th>Status</th><th>Task</th><th>Phase</th><th>Priority</th><th>ISO Mapping</th><th>Evidence</th></tr></thead>
 <tbody>
 
-<tr><td colspan="5" class="phase-header">1. Governance & Risk Management</td></tr>
+<tr><td colspan="6" class="phase-header">1. Governance & Risk Management</td></tr>
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Establish AI Governance Committee — define roles and responsibilities.</td>
-<td>Governance</td><td>High</td><td>ISO 27001 Clauses 4-5; ISO 42001 4.3</td></tr>
+<td>Establish AI Governance Committee — define roles and responsibilities.</td>
+<td>Governance</td><td>High</td><td>ISO 27001 Clauses 4-5; ISO 42001 4.3</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Policy Document">Policy Document</option>
+    <option value="Committee Charter">Committee Charter</option>
+    <option value="Meeting Minutes">Meeting Minutes</option>
+    <option value="Role Definition Document">Role Definition Document</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Define AI Risk Assessment Method and Register.</td>
-<td>Risk Mgmt</td><td>High</td><td>ISO 27001 6.1; ISO 42001 8.3</td></tr>
+<td>Define AI Risk Assessment Method and Register.</td>
+<td>Risk Mgmt</td><td>High</td><td>ISO 27001 6.1; ISO 42001 8.3</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Risk Assessment Report">Risk Assessment Report</option>
+    <option value="Risk Register">Risk Register</option>
+    <option value="Methodology Document">Methodology Document</option>
+    <option value="Risk Treatment Plan">Risk Treatment Plan</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-medium" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Publish Statement of Applicability (SoA) mapping controls to risks.</td>
-<td>Governance</td><td>Medium</td><td>ISO 27001 6.1.3</td></tr>
+<td>Publish Statement of Applicability (SoA) mapping controls to risks.</td>
+<td>Governance</td><td>Medium</td><td>ISO 27001 6.1.3</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Statement of Applicability">Statement of Applicability</option>
+    <option value="Control Mapping Document">Control Mapping Document</option>
+    <option value="Risk-Control Matrix">Risk-Control Matrix</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-low" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Conduct annual Management Review of AI security program.</td>
-<td>Governance</td><td>Low</td><td>ISO 27001 9.3</td></tr>
+<td>Conduct annual Management Review of AI security program.</td>
+<td>Governance</td><td>Low</td><td>ISO 27001 9.3</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Management Review Minutes">Management Review Minutes</option>
+    <option value="Performance Reports">Performance Reports</option>
+    <option value="Action Item Tracking">Action Item Tracking</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
-<tr><td colspan="5" class="phase-header">2. Vendor & Supply-Chain Security</td></tr>
+<tr><td colspan="6" class="phase-header">2. Vendor & Supply-Chain Security</td></tr>
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Perform Vendor Security Due Diligence (SOC 2, ISO certs, pen-test summary).</td>
-<td>Vendor</td><td>High</td><td>ISO 27001 A.5.19; A.5.20</td></tr>
+<td>Perform Vendor Security Due Diligence (SOC 2, ISO certs, pen-test summary).</td>
+<td>Vendor</td><td>High</td><td>ISO 27001 A.5.19; A.5.20</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Vendor Assessment Reports">Vendor Assessment Reports</option>
+    <option value="SOC 2 Reports">SOC 2 Reports</option>
+    <option value="ISO Certificates">ISO Certificates</option>
+    <option value="Penetration Test Reports">Penetration Test Reports</option>
+    <option value="Due Diligence Checklist">Due Diligence Checklist</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Require Software Bill of Materials (SBOM) & Component Provenance.</td>
-<td>Vendor</td><td>High</td><td>ISO 42001 8.2.4</td></tr>
+<td>Require Software Bill of Materials (SBOM) & Component Provenance.</td>
+<td>Vendor</td><td>High</td><td>ISO 42001 8.2.4</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="SBOM Documents">SBOM Documents</option>
+    <option value="Component Provenance Records">Component Provenance Records</option>
+    <option value="Vendor Contracts">Vendor Contracts</option>
+    <option value="Supply Chain Policy">Supply Chain Policy</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-medium" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Include contractual clauses — incident SLA, right to audit, sub-processors.</td>
-<td>Vendor</td><td>Medium</td><td>ISO 27001 A.5.21</td></tr>
+<td>Include contractual clauses — incident SLA, right to audit, sub-processors.</td>
+<td>Vendor</td><td>Medium</td><td>ISO 27001 A.5.21</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Contract Documents">Contract Documents</option>
+    <option value="SLA Agreements">SLA Agreements</option>
+    <option value="Right to Audit Clauses">Right to Audit Clauses</option>
+    <option value="Sub-processor Lists">Sub-processor Lists</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
-<tr><td colspan="5" class="phase-header">3. Data Protection & Privacy</td></tr>
+<tr><td colspan="6" class="phase-header">3. Data Protection & Privacy</td></tr>
 <tr class="priority-critical" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Conduct Data Protection Impact Assessment (DPIA) for PII/PHI data.</td>
-<td>Privacy</td><td>Critical</td><td>ISO 42001 8.4; GDPR Art 35</td></tr>
+<td>Conduct Data Protection Impact Assessment (DPIA) for PII/PHI data.</td>
+<td>Privacy</td><td>Critical</td><td>ISO 42001 8.4; GDPR Art 35</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="DPIA Report">DPIA Report</option>
+    <option value="Privacy Impact Assessment">Privacy Impact Assessment</option>
+    <option value="Data Flow Diagrams">Data Flow Diagrams</option>
+    <option value="Risk Treatment Records">Risk Treatment Records</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Classify and label AI datasets (PII, IP, public, restricted).</td>
-<td>Data</td><td>High</td><td>ISO 27001 A.5.12</td></tr>
+<td>Classify and label AI datasets (PII, IP, public, restricted).</td>
+<td>Data</td><td>High</td><td>ISO 27001 A.5.12</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Data Classification Policy">Data Classification Policy</option>
+    <option value="Data Inventory">Data Inventory</option>
+    <option value="Classification Labels">Classification Labels</option>
+    <option value="Data Handling Procedures">Data Handling Procedures</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Apply Encryption in transit/at rest & manage keys via HSM/KMS.</td>
-<td>Data</td><td>High</td><td>ISO 27001 A.8.24</td></tr>
+<td>Apply Encryption in transit/at rest & manage keys via HSM/KMS.</td>
+<td>Data</td><td>High</td><td>ISO 27001 A.8.24</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Encryption Configuration">Encryption Configuration</option>
+    <option value="Key Management Policy">Key Management Policy</option>
+    <option value="HSM/KMS Documentation">HSM/KMS Documentation</option>
+    <option value="Cryptographic Controls">Cryptographic Controls</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
-<tr><td colspan="5" class="phase-header">4. Model Security & Lifecycle Management</td></tr>
+<tr><td colspan="6" class="phase-header">4. Model Security & Lifecycle Management</td></tr>
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Implement Model Provenance & Artifact Signing before deployment.</td>
-<td>Model</td><td>High</td><td>ISO 42001 8.2.5</td></tr>
+<td>Implement Model Provenance & Artifact Signing before deployment.</td>
+<td>Model</td><td>High</td><td>ISO 42001 8.2.5</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Model Provenance Records">Model Provenance Records</option>
+    <option value="Artifact Signing Logs">Artifact Signing Logs</option>
+    <option value="Deployment Procedures">Deployment Procedures</option>
+    <option value="Digital Signature Records">Digital Signature Records</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-medium" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Maintain Model Registry with version control and access tracking.</td>
-<td>Model</td><td>Medium</td><td>ISO 42001 8.3.2</td></tr>
+<td>Maintain Model Registry with version control and access tracking.</td>
+<td>Model</td><td>Medium</td><td>ISO 42001 8.3.2</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Model Registry">Model Registry</option>
+    <option value="Version Control Records">Version Control Records</option>
+    <option value="Access Logs">Access Logs</option>
+    <option value="Change Management Records">Change Management Records</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Conduct Adversarial Testing and remediate vulnerabilities.</td>
-<td>Testing</td><td>High</td><td>ISO 27001 A.12.6</td></tr>
+<td>Conduct Adversarial Testing and remediate vulnerabilities.</td>
+<td>Testing</td><td>High</td><td>ISO 27001 A.12.6</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Adversarial Test Reports">Adversarial Test Reports</option>
+    <option value="Vulnerability Assessment">Vulnerability Assessment</option>
+    <option value="Remediation Records">Remediation Records</option>
+    <option value="Penetration Test Results">Penetration Test Results</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
-<tr><td colspan="5" class="phase-header">5. Vulnerability & Incident Management</td></tr>
+<tr><td colspan="6" class="phase-header">5. Vulnerability & Incident Management</td></tr>
 <tr class="priority-high" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Establish Vulnerability Management policy (SCA, SAST, DAST).</td>
-<td>Ops</td><td>High</td><td>ISO 27001 A.12.6.1</td></tr>
+<td>Establish Vulnerability Management policy (SCA, SAST, DAST).</td>
+<td>Ops</td><td>High</td><td>ISO 27001 A.12.6.1</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Vulnerability Management Policy">Vulnerability Management Policy</option>
+    <option value="SCA/SAST/DAST Reports">SCA/SAST/DAST Reports</option>
+    <option value="Scanning Procedures">Scanning Procedures</option>
+    <option value="Tool Configuration">Tool Configuration</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-medium" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Create AI-specific Incident Response playbooks (poisoning, drift attack).</td>
-<td>Ops</td><td>Medium</td><td>ISO 27001 A.5.29</td></tr>
+<td>Create AI-specific Incident Response playbooks (poisoning, drift attack).</td>
+<td>Ops</td><td>Medium</td><td>ISO 27001 A.5.29</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Incident Response Playbooks">Incident Response Playbooks</option>
+    <option value="AI Attack Scenarios">AI Attack Scenarios</option>
+    <option value="Response Procedures">Response Procedures</option>
+    <option value="Drill/Exercise Records">Drill/Exercise Records</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
-<tr><td colspan="5" class="phase-header">6. Compliance & Training</td></tr>
+<tr><td colspan="6" class="phase-header">6. Compliance & Training</td></tr>
 <tr class="priority-medium" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Conduct Security & Ethical AI training for developers and staff.</td>
-<td>Compliance</td><td>Medium</td><td>ISO 27001 A.6.3</td></tr>
+<td>Conduct Security & Ethical AI training for developers and staff.</td>
+<td>Compliance</td><td>Medium</td><td>ISO 27001 A.6.3</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Training Materials">Training Materials</option>
+    <option value="Attendance Records">Attendance Records</option>
+    <option value="Completion Certificates">Completion Certificates</option>
+    <option value="Training Schedule">Training Schedule</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 <tr class="priority-medium" data-status="not-started"><td><span class="status-badge status-not-started">Not Started</span></td>
-<td><input type="checkbox" class="chk"> Perform Internal Audit & continuous improvement review annually.</td>
-<td>Compliance</td><td>Medium</td><td>ISO 27001 9.2</td></tr>
+<td>Perform Internal Audit & continuous improvement review annually.</td>
+<td>Compliance</td><td>Medium</td><td>ISO 27001 9.2</td>
+<td>
+  <select class="evidence-select">
+    <option value="">-- Select Evidence Type --</option>
+    <option value="Internal Audit Report">Internal Audit Report</option>
+    <option value="Audit Findings">Audit Findings</option>
+    <option value="Corrective Action Records">Corrective Action Records</option>
+    <option value="Improvement Plans">Improvement Plans</option>
+    <option value="Other">Other (specify below)</option>
+  </select>
+  <input type="text" class="evidence-other-input" placeholder="Specify other evidence type...">
+</td></tr>
+<tr class="remarks-row"><td colspan="6" class="remarks-section">
+  <label class="remarks-label">Remarks/Notes:</label>
+  <textarea class="remarks-textarea" placeholder="Add remarks, notes, or action items..."></textarea>
+  <div class="remarks-actions">
+    <button class="save-btn save-remarks">Save Remarks</button>
+  </div>
+</td></tr>
 
 </tbody>
 </table>
 
 <div class="controls">
+<button id="downloadReport" class="download-btn">Download Report</button>
+<button id="saveAllData" class="save-btn">Save All Data</button>
 <span style="margin-left:auto;font-size:12px;color:#666;">Disclaimer: Do not upload sensitive content.</span>
 </div>
 
 <footer>
-AI Security Onboarding Checklist v1.1 | © 2025 Fridrick Cyber Tech
+AI Security Onboarding Checklist v1.2 | © 2025 Fridrick Cyber Tech
 </footer>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded",()=>{
- const checkboxes=[...document.querySelectorAll(".chk")];
- const progressFill=document.getElementById("progressFill");
- const progressValue=document.getElementById("progressValue");
- const filters=[...document.querySelectorAll(".filter-btn")];
- const search=document.getElementById("searchBox");
+document.addEventListener("DOMContentLoaded", () => {
+ const statusBadges = [...document.querySelectorAll(".status-badge")];
+ const progressFill = document.getElementById("progressFill");
+ const progressValue = document.getElementById("progressValue");
+ const filters = [...document.querySelectorAll(".filter-btn")];
+ const search = document.getElementById("searchBox");
+ const downloadBtn = document.getElementById("downloadReport");
+ const saveAllBtn = document.getElementById("saveAllData");
+ const remarksRows = [...document.querySelectorAll(".remarks-row")];
+ const evidenceSelects = [...document.querySelectorAll(".evidence-select")];
  
- // Initialize all checkboxes as unchecked for security
- checkboxes.forEach(checkbox => {
-   checkbox.checked = false;
- });
+ // Load saved data if available
+ loadSavedData();
  
- function updateProgress(){
-   const total=checkboxes.length,done=checkboxes.filter(c=>c.checked).length;
-   const pct=Math.round((done/total)*100)||0;
-   progressFill.style.width=pct+"%";
-   progressValue.textContent=pct+"%";
-   progressFill.style.background=pct<30?"var(--danger)":pct<70?"var(--warning)":"var(--success)";
+ function updateProgress() {
+   const total = statusBadges.length;
+   const completed = statusBadges.filter(badge => badge.textContent === "Completed").length;
+   const inProgress = statusBadges.filter(badge => badge.textContent === "In Progress").length;
+   
+   // Calculate progress: Completed = 1 point, In Progress = 0.5 point
+   const progress = (completed + (inProgress * 0.5)) / total;
+   const pct = Math.round(progress * 100);
+   
+   progressFill.style.width = pct + "%";
+   progressValue.textContent = pct + "%";
+   
+   // Update progress bar color based on completion
+   if (pct < 30) {
+     progressFill.style.background = "var(--danger)";
+   } else if (pct < 70) {
+     progressFill.style.background = "var(--warning)";
+   } else {
+     progressFill.style.background = "var(--success)";
+   }
  }
  
- checkboxes.forEach(c=>c.addEventListener("change",()=>{
-   const row=c.closest("tr");
-   const badge=row.querySelector(".status-badge");
-   if(c.checked){
-     badge.textContent="Completed";
-     badge.className="status-badge status-completed";
-     row.dataset.status="completed";
-   } else {
-     badge.textContent="Not Started";
-     badge.className="status-badge status-not-started";
-     row.dataset.status="not-started";
-   }
-   updateProgress();
- }));
+ // Add click handlers to status badges for cycling through states
+ statusBadges.forEach(badge => {
+   badge.addEventListener("click", () => {
+     const row = badge.closest("tr");
+     
+     // Cycle through statuses: Not Started -> In Progress -> Completed -> Not Started
+     if (badge.textContent === "Not Started") {
+       badge.textContent = "In Progress";
+       badge.className = "status-badge status-in-progress";
+       row.dataset.status = "in-progress";
+     } else if (badge.textContent === "In Progress") {
+       badge.textContent = "Completed";
+       badge.className = "status-badge status-completed";
+       row.dataset.status = "completed";
+     } else {
+       badge.textContent = "Not Started";
+       badge.className = "status-badge status-not-started";
+       row.dataset.status = "not-started";
+     }
+     
+     updateProgress();
+     saveData();
+   });
+ });
  
+ // Add change handlers to evidence selects to show/hide other input
+ evidenceSelects.forEach(select => {
+   select.addEventListener("change", function() {
+     const otherInput = this.parentNode.querySelector(".evidence-other-input");
+     if (this.value === "Other") {
+       otherInput.style.display = "block";
+     } else {
+       otherInput.style.display = "none";
+       otherInput.value = "";
+     }
+     saveData();
+   });
+ });
+ 
+ // Add click handlers to task rows to toggle remarks section
+ document.querySelectorAll("#checklistTable tbody tr").forEach(row => {
+   if (row.classList.contains("phase-header") || row.classList.contains("remarks-row")) return;
+   
+   row.addEventListener("dblclick", () => {
+     const remarksRow = row.nextElementSibling;
+     if (remarksRow && remarksRow.classList.contains("remarks-row")) {
+       remarksRow.querySelector(".remarks-section").classList.toggle("active");
+     }
+   });
+ });
+ 
+ // Add click handlers to save remarks buttons
+ document.querySelectorAll(".save-remarks").forEach(button => {
+   button.addEventListener("click", function() {
+     const remarksRow = this.closest(".remarks-row");
+     remarksRow.querySelector(".remarks-section").classList.remove("active");
+     saveData();
+     
+     // Show a quick confirmation
+     const originalText = this.textContent;
+     this.textContent = "Saved!";
+     setTimeout(() => {
+       this.textContent = originalText;
+     }, 1500);
+   });
+ });
+ 
+ // Initialize progress bar
  updateProgress();
 
- filters.forEach(btn=>btn.addEventListener("click",()=>{
-   filters.forEach(b=>b.classList.remove("active"));
-   btn.classList.add("active");
-   const f=btn.dataset.filter;
-   document.querySelectorAll("#checklistTable tbody tr").forEach(r=>{
-     if(r.classList.contains("phase-header"))return;
-     if(f==="all")r.style.display="";
-     else r.style.display=r.dataset.status===f?"":"none";
+ // Filter functionality
+ filters.forEach(btn => {
+   btn.addEventListener("click", () => {
+     filters.forEach(b => b.classList.remove("active"));
+     btn.classList.add("active");
+     const filter = btn.dataset.filter;
+     
+     document.querySelectorAll("#checklistTable tbody tr").forEach(row => {
+       if (row.classList.contains("phase-header") || row.classList.contains("remarks-row")) return;
+       
+       if (filter === "all") {
+         row.style.display = "";
+         // Show remarks rows if their parent row is visible
+         const remarksRow = row.nextElementSibling;
+         if (remarksRow && remarksRow.classList.contains("remarks-row")) {
+           remarksRow.style.display = "";
+         }
+       } else {
+         row.style.display = row.dataset.status === filter ? "" : "none";
+         // Hide remarks rows if their parent row is hidden
+         const remarksRow = row.nextElementSibling;
+         if (remarksRow && remarksRow.classList.contains("remarks-row")) {
+           remarksRow.style.display = row.dataset.status === filter ? "" : "none";
+         }
+       }
+     });
    });
- }));
+ });
 
- search.addEventListener("input",()=>{
-   const t=search.value.toLowerCase();
-   document.querySelectorAll("#checklistTable tbody tr").forEach(r=>{
-     if(r.classList.contains("phase-header"))return;
-     const text=r.textContent.toLowerCase();
-     r.style.display=text.includes(t)?"":"none";
+ // Search functionality
+ search.addEventListener("input", () => {
+   const term = search.value.toLowerCase();
+   document.querySelectorAll("#checklistTable tbody tr").forEach(row => {
+     if (row.classList.contains("phase-header") || row.classList.contains("remarks-row")) return;
+     const text = row.textContent.toLowerCase();
+     
+     if (text.includes(term)) {
+       row.style.display = "";
+       // Show remarks row if parent row is visible
+       const remarksRow = row.nextElementSibling;
+       if (remarksRow && remarksRow.classList.contains("remarks-row")) {
+         remarksRow.style.display = "";
+       }
+     } else {
+       row.style.display = "none";
+       // Hide remarks row if parent row is hidden
+       const remarksRow = row.nextElementSibling;
+       if (remarksRow && remarksRow.classList.contains("remarks-row")) {
+         remarksRow.style.display = "none";
+       }
+     }
    });
+ });
+ 
+ // Save all data functionality
+ saveAllBtn.addEventListener("click", () => {
+   saveData();
+   
+   // Show confirmation
+   const originalText = saveAllBtn.textContent;
+   saveAllBtn.textContent = "All Data Saved!";
+   setTimeout(() => {
+     saveAllBtn.textContent = originalText;
+   }, 1500);
+ });
+ 
+ // Save data to localStorage
+ function saveData() {
+   const data = {};
+   
+   // Save statuses
+   statusBadges.forEach((badge, index) => {
+     data[`status-${index}`] = badge.textContent;
+   });
+   
+   // Save evidence
+   evidenceSelects.forEach((select, index) => {
+     data[`evidence-${index}`] = select.value;
+     // Save other evidence text if applicable
+     const otherInput = select.parentNode.querySelector(".evidence-other-input");
+     data[`evidence-other-${index}`] = otherInput.value;
+   });
+   
+   // Save remarks
+   const remarksTextareas = [...document.querySelectorAll(".remarks-textarea")];
+   remarksTextareas.forEach((textarea, index) => {
+     data[`remarks-${index}`] = textarea.value;
+   });
+   
+   localStorage.setItem("checklistData", JSON.stringify(data));
+ }
+ 
+ // Load data from localStorage
+ function loadSavedData() {
+   const savedData = localStorage.getItem("checklistData");
+   if (savedData) {
+     const data = JSON.parse(savedData);
+     
+     // Load statuses
+     statusBadges.forEach((badge, index) => {
+       if (data[`status-${index}`]) {
+         badge.textContent = data[`status-${index}`];
+         const row = badge.closest("tr");
+         
+         if (badge.textContent === "In Progress") {
+           badge.className = "status-badge status-in-progress";
+           row.dataset.status = "in-progress";
+         } else if (badge.textContent === "Completed") {
+           badge.className = "status-badge status-completed";
+           row.dataset.status = "completed";
+         } else {
+           badge.className = "status-badge status-not-started";
+           row.dataset.status = "not-started";
+         }
+       }
+     });
+     
+     // Load evidence
+     evidenceSelects.forEach((select, index) => {
+       if (data[`evidence-${index}`]) {
+         select.value = data[`evidence-${index}`];
+         // Trigger change event to show/hide other input
+         select.dispatchEvent(new Event('change'));
+         
+         // Load other evidence text if applicable
+         const otherInput = select.parentNode.querySelector(".evidence-other-input");
+         if (data[`evidence-other-${index}`]) {
+           otherInput.value = data[`evidence-other-${index}`];
+         }
+       }
+     });
+     
+     // Load remarks
+     const remarksTextareas = [...document.querySelectorAll(".remarks-textarea")];
+     remarksTextareas.forEach((textarea, index) => {
+       if (data[`remarks-${index}`]) {
+         textarea.value = data[`remarks-${index}`];
+       }
+     });
+     
+     updateProgress();
+   }
+ }
+ 
+ // Download report functionality
+ downloadBtn.addEventListener("click", () => {
+   // Generate report content
+   let reportContent = "AI Security Onboarding Checklist Report\n";
+   reportContent += "Generated by Fridrick Cyber Tech\n";
+   reportContent += `Date: ${new Date().toLocaleDateString()}\n`;
+   reportContent += `Overall Progress: ${progressValue.textContent}\n\n`;
+   
+   // Get all phase headers and tasks
+   const phases = document.querySelectorAll('.phase-header');
+   phases.forEach(phase => {
+     const phaseTitle = phase.textContent.trim();
+     reportContent += `${phaseTitle}\n`;
+     reportContent += "=".repeat(phaseTitle.length) + "\n";
+     
+     // Find all tasks in this phase
+     let nextElement = phase.nextElementSibling;
+     while(nextElement && !nextElement.classList.contains('phase-header')) {
+       if(nextElement.dataset.status) {
+         const status = nextElement.querySelector('.status-badge').textContent;
+         const taskText = nextElement.querySelector('td:nth-child(2)').textContent.trim();
+         const phaseText = nextElement.querySelector('td:nth-child(3)').textContent;
+         const priority = nextElement.querySelector('td:nth-child(4)').textContent;
+         const iso = nextElement.querySelector('td:nth-child(5)').textContent;
+         
+         // Get evidence
+         const evidenceSelect = nextElement.querySelector('.evidence-select');
+         let evidence = evidenceSelect.value;
+         if (evidence === "Other") {
+           const otherInput = evidenceSelect.parentNode.querySelector('.evidence-other-input');
+           evidence = `Other: ${otherInput.value}`;
+         }
+         
+         // Get remarks from the next row (remarks row)
+         const remarksRow = nextElement.nextElementSibling;
+         let remarks = "";
+         if (remarksRow && remarksRow.classList.contains("remarks-row")) {
+           remarks = remarksRow.querySelector('.remarks-textarea').value;
+         }
+         
+         reportContent += `- [${status}] ${taskText}\n`;
+         reportContent += `  Priority: ${priority} | Phase: ${phaseText} | ISO: ${iso}\n`;
+         if (evidence) {
+           reportContent += `  Evidence: ${evidence}\n`;
+         }
+         if (remarks) {
+           reportContent += `  Remarks: ${remarks}\n`;
+         }
+         reportContent += "\n";
+       }
+       nextElement = nextElement.nextElementSibling;
+     }
+     reportContent += "\n";
+   });
+   
+   // Add summary
+   const completed = statusBadges.filter(badge => badge.textContent === "Completed").length;
+   const inProgress = statusBadges.filter(badge => badge.textContent === "In Progress").length;
+   const notStarted = statusBadges.filter(badge => badge.textContent === "Not Started").length;
+   
+   reportContent += "SUMMARY\n";
+   reportContent += "=======\n";
+   reportContent += `Completed: ${completed} tasks\n`;
+   reportContent += `In Progress: ${inProgress} tasks\n`;
+   reportContent += `Not Started: ${notStarted} tasks\n`;
+   reportContent += `Total: ${statusBadges.length} tasks\n`;
+   
+   // Create and download the file
+   const blob = new Blob([reportContent], { type: 'text/plain' });
+   const url = URL.createObjectURL(blob);
+   const a = document.createElement('a');
+   a.href = url;
+   a.download = `AI_Security_Checklist_Report_${new Date().toISOString().split('T')[0]}.txt`;
+   document.body.appendChild(a);
+   a.click();
+   document.body.removeChild(a);
+   URL.revokeObjectURL(url);
  });
 });
 </script>
