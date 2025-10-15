@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>AI Solution Onboarding Security Checklist — Fridrick Cyber Tech</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<!-- Include jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 <style>
   /* Basic reset & typography */
   :root{
@@ -69,6 +72,43 @@
   .progress-fill{height:100%;width:0;background:var(--success);transition:width .35s}
   .progress-text{font-size:13px;color:var(--muted)}
 
+  /* Risk Score Styles */
+  .risk-score-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px;
+  }
+  .risk-score-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  .risk-score-value {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .risk-score-low {
+    background-color: #dcfce7;
+    color: #16a34a;
+  }
+  .risk-score-medium {
+    background-color: #fef9c3;
+    color: #ca8a04;
+  }
+  .risk-score-high {
+    background-color: #fee2e2;
+    color: #dc2626;
+  }
+  .risk-score-critical {
+    background-color: #450a0a;
+    color: #fecaca;
+  }
+
   /* table */
   table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
   thead th{background:#071033;color:#fff;padding:10px;text-align:left;position:sticky;top:0;z-index:2}
@@ -101,6 +141,14 @@
     td[data-label]{flex-basis:40%;font-weight:600;color:#334155}
     td > *{flex-basis:58%}
     .evidence-other{width:100%}
+    .toolbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .progress-wrap, .risk-score-wrap {
+      margin-left: 0;
+      margin-top: 10px;
+    }
   }
 
   footer{margin-top:20px;text-align:center;color:#6b7280;font-size:13px;padding:18px}
@@ -110,10 +158,10 @@
 <body>
 
 <header>
-  <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/AQExD7RaWxtQkOPG/banner_logo-Yan0GNZq08sQ5Wkw.png" alt="Fridrick Cyber Tech Logo" onerror="this.style.display='none'">
+  <img src="https://fridrickcybertech.com/assets/logo.png" alt="Fridrick Cyber Tech Logo" onerror="this.style.display='none'">
   <div class="titles">
     <h1>AI Solution Onboarding Security Checklist</h1>
-    <p> A streamlined checklist to assist businesses. </p>
+    <p>FRIDRICK CYBER TECH — solution for AI solution onboarding</p>
   </div>
 </header>
 
@@ -145,6 +193,12 @@
           <div id="progressFill" class="progress-fill"></div>
         </div>
         <div class="progress-text"><span id="progressValue">0%</span></div>
+      </div>
+
+      <!-- Risk Score Display -->
+      <div class="risk-score-wrap">
+        <span class="risk-score-label">Risk Score:</span>
+        <span id="riskScoreValue" class="risk-score-value risk-score-high">0%</span>
       </div>
     </div>
 
@@ -484,6 +538,7 @@
       <button id="saveBtn" class="btn">Save Progress</button>
       <button id="clearBtn" class="btn secondary">Clear My Data</button>
       <button id="exportBtn" class="btn">Export CSV</button>
+      <button id="exportPdfBtn" class="btn">Export PDF</button>
       <div style="flex:1"></div>
       <div class="note">Tip: Each user has their own workspace. Changes are automatically saved.</div>
     </div>
@@ -517,11 +572,13 @@ class MultiUserChecklist {
     this.remarks = this.rows.map(r => r.querySelector(".remarks"));
     this.progressFill = document.getElementById("progressFill");
     this.progressValue = document.getElementById("progressValue");
+    this.riskScoreValue = document.getElementById("riskScoreValue");
     this.filterBtns = Array.from(document.querySelectorAll(".filter-btn"));
     this.searchInput = document.getElementById("search");
     this.saveBtn = document.getElementById("saveBtn");
     this.clearBtn = document.getElementById("clearBtn");
     this.exportBtn = document.getElementById("exportBtn");
+    this.exportPdfBtn = document.getElementById("exportPdfBtn");
     this.changeUserBtn = document.getElementById("changeUserBtn");
     
     this.init();
@@ -744,6 +801,64 @@ class MultiUserChecklist {
     else this.progressFill.style.background = "var(--success)";
   }
 
+  // Risk Score calculation
+  calculateRiskScore() {
+    let totalRisk = 0;
+    let maxRisk = 0;
+    
+    // Define risk weights by priority
+    const riskWeights = {
+      "critical": 4,
+      "high": 3,
+      "medium": 2,
+      "low": 1
+    };
+    
+    // Define risk reduction by status
+    const statusRiskReduction = {
+      "completed": 1.0,  // 100% risk reduction
+      "in-progress": 0.5, // 50% risk reduction
+      "not-started": 0    // 0% risk reduction
+    };
+    
+    this.rows.forEach((row) => {
+      const priority = row.cells[3].textContent.toLowerCase().trim();
+      const status = row.dataset.status;
+      
+      // Calculate base risk for this item
+      const baseRisk = riskWeights[priority] || 2;
+      
+      // Calculate actual risk based on status
+      const riskReduction = statusRiskReduction[status] || 0;
+      const actualRisk = baseRisk * (1 - riskReduction);
+      
+      totalRisk += actualRisk;
+      maxRisk += baseRisk;
+    });
+    
+    // Calculate risk score as percentage (higher percentage = higher risk)
+    const riskPercentage = maxRisk > 0 ? Math.round((totalRisk / maxRisk) * 100) : 0;
+    
+    return riskPercentage;
+  }
+  
+  updateRiskScore() {
+    const riskScore = this.calculateRiskScore();
+    this.riskScoreValue.textContent = `${riskScore}%`;
+    
+    // Update styling based on risk level
+    this.riskScoreValue.className = "risk-score-value";
+    if (riskScore <= 25) {
+      this.riskScoreValue.classList.add("risk-score-low");
+    } else if (riskScore <= 50) {
+      this.riskScoreValue.classList.add("risk-score-medium");
+    } else if (riskScore <= 75) {
+      this.riskScoreValue.classList.add("risk-score-high");
+    } else {
+      this.riskScoreValue.classList.add("risk-score-critical");
+    }
+  }
+
   // Filtering & Searching
   applyFilter(filter) {
     this.rows.forEach(row => {
@@ -793,6 +908,104 @@ class MultiUserChecklist {
     URL.revokeObjectURL(url);
   }
 
+  // PDF export
+  exportPDF() {
+    // Use the jsPDF library
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'mm', 'a4');
+    
+    // Company details
+    const companyName = "Fridrick Cyber Tech";
+    const companyWebsite = "fridrickcybertech.com";
+    const companyEmail = "contact@fridrickcybertech.com";
+    
+    // Add header with logo and company details
+    doc.setFontSize(16);
+    doc.setTextColor(40, 40, 40);
+    doc.text("AI Solution Onboarding Security Checklist", 20, 20);
+    
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`${companyName} | ${companyWebsite} | ${companyEmail}`, 20, 28);
+    
+    // Add risk score and progress
+    const riskScore = this.calculateRiskScore();
+    const total = this.statusSelects.length || 1;
+    const completed = this.statusSelects.filter(s => s && s.value.toLowerCase() === "completed").length;
+    const inProgress = this.statusSelects.filter(s => s && s.value.toLowerCase() === "in-progress").length;
+    const progress = Math.round(((completed + inProgress*0.5)/total)*100);
+    
+    doc.setFontSize(12);
+    doc.setTextColor(40, 40, 40);
+    doc.text(`Progress: ${progress}% | Risk Score: ${riskScore}%`, 20, 38);
+    
+    // Add user and date info
+    doc.text(`Generated by: ${this.userName} | Date: ${new Date().toLocaleDateString()}`, 20, 45);
+    
+    // Prepare table data
+    const tableHeaders = [
+      ["Status", "Checklist Item", "Domain", "Priority", "ISO Mapping", "Evidence", "Remarks"]
+    ];
+    
+    const tableRows = [];
+    const allRows = Array.from(document.querySelectorAll("#checklist tbody tr")).filter(r => !r.classList.contains("phase-row"));
+    
+    allRows.forEach((row, index) => {
+      const tds = row.querySelectorAll("td");
+      if (tds.length < 7) return;
+      
+      const status = tds[0].querySelector("select") ? tds[0].querySelector("select").value : "";
+      const item = tds[1] ? tds[1].innerText.trim().replace(/\r?\n+/g, " ") : "";
+      const domain = tds[2] ? tds[2].innerText.trim() : "";
+      const prio = tds[3] ? tds[3].innerText.trim() : "";
+      const iso = tds[4] ? tds[4].innerText.trim() : "";
+      const evidence = tds[5].querySelector("select") ? tds[5].querySelector("select").value : "";
+      const remark = tds[6].querySelector("textarea") ? tds[6].querySelector("textarea").value.replace(/\r?\n+/g, " ") : "";
+      
+      tableRows.push([
+        status,
+        item.length > 80 ? item.substring(0, 80) + "..." : item,
+        domain,
+        prio,
+        iso.length > 40 ? iso.substring(0, 40) + "..." : iso,
+        evidence,
+        remark.length > 40 ? remark.substring(0, 40) + "..." : remark
+      ]);
+    });
+    
+    // Add the table
+    doc.autoTable({
+      head: tableHeaders,
+      body: tableRows,
+      startY: 55,
+      styles: { fontSize: 8, cellPadding: 2 },
+      headStyles: { fillColor: [7, 16, 51] },
+      columnStyles: {
+        0: { cellWidth: 15 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 20 },
+        3: { cellWidth: 15 },
+        4: { cellWidth: 30 },
+        5: { cellWidth: 20 },
+        6: { cellWidth: 30 }
+      },
+      margin: { left: 20, right: 20 }
+    });
+    
+    // Add footer
+    const pageCount = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      doc.setFontSize(8);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`Page ${i} of ${pageCount}`, 20, doc.internal.pageSize.height - 10);
+      doc.text(`${companyName} - Confidential`, doc.internal.pageSize.width - 40, doc.internal.pageSize.height - 10, { align: 'right' });
+    }
+    
+    // Save the PDF
+    doc.save(`AI_Onboarding_Checklist_${new Date().toISOString().slice(0,10)}.pdf`);
+  }
+
   // Initialize the application
   init() {
     this.setupEventListeners();
@@ -802,6 +1015,7 @@ class MultiUserChecklist {
     this.updateUI();
     this.loadData();
     this.updateProgress();
+    this.updateRiskScore();
     this.updateLockIndicators();
     
     // Set up periodic updates
@@ -823,6 +1037,7 @@ class MultiUserChecklist {
         const row = this.rows[idx];
         row.dataset.status = sel.value.toLowerCase();
         this.updateProgress();
+        this.updateRiskScore();
         this.saveData();
       });
     });
@@ -854,6 +1069,7 @@ class MultiUserChecklist {
 
     // export
     this.exportBtn.addEventListener("click", () => this.exportCSV());
+    this.exportPdfBtn.addEventListener("click", () => this.exportPDF());
 
     // show evidence-other when appropriate on load
     this.evidenceSelects.forEach((sel, idx) => {
@@ -936,10 +1152,9 @@ document.addEventListener('input', (e) => {
   if(e.target && (e.target.matches('.status-select') || e.target.matches('.remarks') || 
      e.target.matches('.evidence-select') || e.target.matches('.evidence-other'))){
     checklist.updateProgress();
+    checklist.updateRiskScore();
   }
 });
 </script>
 </body>
 </html>
-
-
