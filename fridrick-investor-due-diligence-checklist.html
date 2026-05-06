@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Due Diligence Security Checklist — FRIDRICK Cyber Tech</title>
+<meta name="description" content="Track your startup's security posture across six investor-critical domains. 42 controls mapped to commercial outcomes — governance, compliance, access, data, vendors, and operations.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7f7f5;
+    --bg-tertiary: #f0efe9;
+    --text-primary: #1a1a18;
+    --text-secondary: #5f5e5a;
+    --text-tertiary: #888780;
+    --border-light: rgba(0,0,0,0.09);
+    --border-mid: rgba(0,0,0,0.14);
+    --border-strong: rgba(0,0,0,0.22);
+    --green-fill: #E1F5EE;
+    --green-text: #0F6E56;
+    --green-dark: #085041;
+    --green-mid: #1D9E75;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1e1e1c;
+      --bg-secondary: #252523;
+      --bg-tertiary: #2c2c2a;
+      --text-primary: #f0efe9;
+      --text-secondary: #b4b2a9;
+      --text-tertiary: #888780;
+      --border-light: rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.12);
+      --border-strong: rgba(255,255,255,0.2);
+      --green-fill: #04342C;
+      --green-text: #5DCAA5;
+      --green-dark: #9FE1CB;
+    }
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+    line-height: 1.6;
+  }
+
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ── Top nav strip ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--green-text);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-mark svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .brand-name { font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: 0.02em; }
+  .brand-tagline { font-size: 11px; color: var(--text-tertiary); }
+  .back-link {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 0.5px solid var(--border-mid);
+    padding: 5px 10px;
+    border-radius: var(--radius-md);
+    transition: background 0.15s;
+  }
+  .back-link:hover { background: var(--bg-secondary); color: var(--text-secondary); }
+
+  /* ── Hero card ── */
+  .hero-card {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 2rem 2rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-text);
+    margin-bottom: 6px;
+  }
+  .hero-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    max-width: 460px;
+  }
+  .score-block {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .score-num {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .score-label { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+  /* ── Progress ── */
+  .progress-wrap {
+    height: 5px;
+    background: var(--bg-tertiary);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--green-mid);
+    border-radius: 99px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .progress-count { font-size: 12px; color: var(--text-secondary); }
+  .verdict-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    letter-spacing: 0.02em;
+  }
+  .v-red    { background: #FCEBEB; color: #A32D2D; }
+  .v-amber  { background: #FAEEDA; color: #854F0B; }
+  .v-green  { background: #EAF3DE; color: #3B6D11; }
+
+  @media (prefers-color-scheme: dark) {
+    .v-red   { background: #501313; color: #F7C1C1; }
+    .v-amber { background: #412402; color: #FAC775; }
+    .v-green { background: #173404; color: #C0DD97; }
+  }
+
+  /* ── Stats row ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .stat-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-num { font-size: 20px; font-weight: 600; color: var(--text-primary); line-height: 1; }
+  .stat-lbl { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
+
+  /* ── Category cards ── */
+  .cat-card {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.12s;
+  }
+  .cat-header:hover { background: var(--bg-secondary); }
+
+  .cat-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cat-icon-wrap svg { width: 18px; height: 18px; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  .cat-text { flex: 1; min-width: 0; }
+  .cat-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .cat-desc { font-size: 12px; color: var(--text-tertiary); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .cat-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .cat-progress-ring { position: relative; width: 32px; height: 32px; }
+  .cat-progress-ring svg { transform: rotate(-90deg); }
+  .ring-bg { fill: none; stroke: var(--border-light); stroke-width: 2.5; }
+  .ring-fill { fill: none; stroke-width: 2.5; stroke-linecap: round; transition: stroke-dashoffset 0.35s ease; }
+  .ring-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; color: var(--text-secondary); }
+
+  .chevron-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-tertiary);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .chevron-icon.open { transform: rotate(180deg); }
+
+  /* ── Items ── */
+  .items-list { display: none; padding: 0 1.25rem 1rem; }
+  .items-list.open { display: block; }
+  .items-divider { height: 0.5px; background: var(--border-light); margin: 0 -1.25rem 0.875rem; }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 0;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+  }
+  .item:hover .item-label { color: var(--text-primary); }
+
+  .cb {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--border-strong);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
+  }
+  .cb.checked { background: var(--green-mid); border-color: var(--green-mid); }
+  .cb.checked::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 9px;
+    border: 2px solid white;
+    border-top: none;
+    border-left: none;
+    transform: rotate(40deg) translateY(-1px);
+  }
+
+  .item-body { flex: 1; }
+  .item-label { font-size: 13px; color: var(--text-secondary); line-height: 1.55; transition: color 0.1s; }
+
+  .item-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 99px;
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+  }
+  .tag-critical { background: #FCEBEB; color: #A32D2D; }
+  .tag-standard { background: #E6F1FB; color: #185FA5; }
+  .tag-enhanced { background: #FAEEDA; color: #854F0B; }
+  @media (prefers-color-scheme: dark) {
+    .tag-critical { background: #501313; color: #F7C1C1; }
+    .tag-standard { background: #042C53; color: #B5D4F4; }
+    .tag-enhanced { background: #412402; color: #FAC775; }
+  }
+
+  /* ── Actions ── */
+  .actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    border: 0.5px solid var(--border-mid);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .btn:hover { background: var(--bg-secondary); border-color: var(--border-strong); }
+  .btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-primary { background: var(--green-text); border-color: var(--green-text); color: #fff; }
+  .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .btn-primary svg { stroke: #fff; }
+
+  /* ── CTA card ── */
+  .cta-card {
+    background: var(--green-fill);
+    border: 0.5px solid rgba(15,110,86,0.2);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .cta-text { flex: 1; }
+  .cta-head { font-size: 15px; font-weight: 600; color: var(--green-text); margin-bottom: 4px; }
+  .cta-body { font-size: 13px; color: var(--green-text); opacity: 0.8; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: var(--radius-md);
+    background: var(--green-text);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: var(--green-dark); }
+  .cta-btn svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── Legend ── */
+  .legend {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .legend-title { font-size: 11px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .legend-items { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+
+  /* ── Footer ── */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--border-light);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-brand { font-size: 12px; font-weight: 600; color: var(--text-tertiary); }
+  .footer-link { font-size: 12px; color: var(--text-tertiary); text-decoration: none; }
+  .footer-link:hover { color: var(--text-secondary); }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.75rem 3rem; }
+    .hero-card { padding: 1.5rem 1.25rem 1.25rem; }
+    .hero-title { font-size: 18px; }
+    .score-num { font-size: 32px; }
+    .stats-row { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .stat-num { font-size: 16px; }
+    .cat-desc { display: none; }
+    .cta-card { flex-direction: column; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; padding: 0; }
+    .btn, .cta-card, .actions { display: none !important; }
+    .items-list { display: block !important; }
+    .cat-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <a href="/insights/security-due-diligence-startups" class="topbar-brand" style="text-decoration:none;">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6L12 2z"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">FRIDRICK Cyber Tech</div>
+        <div class="brand-tagline">Cybersecurity, Without the Noise.</div>
+      </div>
+    </a>
+    <a href="/insights" class="back-link">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Insights
+    </a>
+  </div>
+
+  <!-- Hero card -->
+  <div class="hero-card">
+    <div class="hero-top">
+      <div>
+        <div class="hero-eyebrow">Due Diligence Tool</div>
+        <div class="hero-title">Investor Security Checklist</div>
+        <div class="hero-sub">42 controls across six domains. Track your readiness for investor due diligence, enterprise sales, and board scrutiny.</div>
+      </div>
+      <div class="score-block">
+        <div class="score-num" id="pct">0%</div>
+        <div class="score-label">Complete</div>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="prog"></div>
+    </div>
+    <div class="progress-meta">
+      <div class="progress-count" id="count-label">0 of 42 controls addressed</div>
+      <div class="verdict-pill v-red" id="verdict">Not ready for DD</div>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" id="st-critical">0</div>
+      <div class="stat-lbl">Critical addressed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="st-standard">0</div>
+      <div class="stat-lbl">Standard addressed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="st-enhanced">0</div>
+      <div class="stat-lbl">Enhanced addressed</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-title">Control tiers</div>
+    <div class="legend-items">
+      <div class="legend-item"><span class="item-tag tag-critical">Critical</span> Deal-blocking if absent — fix before any investor conversation</div>
+      <div class="legend-item"><span class="item-tag tag-standard">Standard</span> Expected by Series A investors and enterprise procurement</div>
+      <div class="legend-item"><span class="item-tag tag-enhanced">Enhanced</span> Differentiating at Series B+ and regulated enterprise sales</div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn" onclick="expandAll()">
+      <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+      Expand all
+    </button>
+    <button class="btn" onclick="collapseAll()">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+      Collapse all
+    </button>
+    <button class="btn" onclick="checkCriticals()">
+      <svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6L12 2z"/></svg>
+      Mark criticals only
+    </button>
+    <button class="btn" onclick="resetAll()" style="margin-left:auto;">
+      <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      Reset
+    </button>
+  </div>
+
+  <!-- Categories rendered by JS -->
+  <div id="cats"></div>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <div class="cta-text">
+      <div class="cta-head">Is your security posture slowing down deals?</div>
+      <div class="cta-body">Book a free 30-minute Risk Clarity Sprint — we'll review your specific gaps and build a prioritised remediation plan.</div>
+    </div>
+    <a href="/contact?service=risk-clarity-sprint" class="cta-btn">
+      Book a Risk Clarity Sprint
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">FRIDRICK – Cybersecurity, Without the Noise.</div>
+    <div style="display:flex;gap:1.25rem;">
+      <a href="/our-advisory-models" class="footer-link">Advisory models</a>
+      <a href="/insights" class="footer-link">All Insights</a>
+      <a href="/contact" class="footer-link">Contact</a>
+    </div>
+  </div>
+
+</div><!-- end page-wrap -->
+
+<script>
+const DATA = [
+  {
+    id: "governance",
+    name: "Security governance",
+    desc: "Policies, ownership, and board-level accountability",
+    iconPath: "M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6L12 2z",
+    iconBg: "#E1F5EE", iconStroke: "#0F6E56", ringColor: "#1D9E75",
+    items: [
+      { label: "Designated security owner or CISO (or named fractional equivalent)", tag: "critical" },
+      { label: "Written Information Security Policy ratified within last 12 months", tag: "critical" },
+      { label: "Security agenda on board or exec meeting cadence (at minimum quarterly)", tag: "standard" },
+      { label: "Risk register maintained and reviewed at least twice yearly", tag: "standard" },
+      { label: "Security budget line item visible in financial planning", tag: "standard" },
+      { label: "Incident response plan documented and tested within last 12 months", tag: "critical" },
+      { label: "Data classification policy in place (public / internal / confidential / restricted)", tag: "standard" },
+    ]
+  },
+  {
+    id: "compliance",
+    name: "Compliance & certifications",
+    desc: "SOC 2, ISO 27001, GDPR, CERT-In, sector-specific frameworks",
+    iconPath: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z",
+    iconBg: "#E6F1FB", iconStroke: "#185FA5", ringColor: "#378ADD",
+    items: [
+      { label: "SOC 2 Type 1 or Type 2 report available (or formal readiness roadmap in place)", tag: "critical" },
+      { label: "ISO 27001 certification or gap assessment completed (if required by enterprise buyers)", tag: "enhanced" },
+      { label: "GDPR / DPDP Act 2023 (India) data processing compliance documented", tag: "critical" },
+      { label: "CERT-In incident reporting obligations understood and process in place", tag: "standard" },
+      { label: "Sector-specific compliance addressed: HIPAA (health), PCI-DSS (fintech), SEBI (financial)", tag: "enhanced" },
+      { label: "Third-party penetration test report available (within last 12 months)", tag: "critical" },
+      { label: "Evidence of continuous compliance monitoring (Vanta, Drata, or Sprinto)", tag: "standard" },
+    ]
+  },
+  {
+    id: "access",
+    name: "Access control & identity",
+    desc: "MFA, RBAC, privileged access, and offboarding",
+    iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
+    iconBg: "#FAEEDA", iconStroke: "#854F0B", ringColor: "#BA7517",
+    items: [
+      { label: "Multi-factor authentication enforced across all critical systems and cloud platforms", tag: "critical" },
+      { label: "Role-based access control (RBAC) implemented — least-privilege principle applied", tag: "critical" },
+      { label: "Access review conducted at minimum quarterly — stale accounts removed", tag: "standard" },
+      { label: "Privileged access (admin/root) documented, limited, and monitored", tag: "critical" },
+      { label: "Offboarding procedure revokes access within 24 hours of departure", tag: "standard" },
+      { label: "Single Sign-On (SSO) deployed across SaaS stack", tag: "standard" },
+      { label: "Password manager policy in place for all staff", tag: "standard" },
+    ]
+  },
+  {
+    id: "data",
+    name: "Data security & privacy",
+    desc: "Encryption, data residency, breach notification, customer data handling",
+    iconPath: "M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7zM4 13a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1zM4 19a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1z",
+    iconBg: "#EEEDFE", iconStroke: "#534AB7", ringColor: "#7F77DD",
+    items: [
+      { label: "Customer data encrypted at rest (AES-256 or equivalent) and in transit (TLS 1.2+)", tag: "critical" },
+      { label: "Data residency requirements documented and met for key enterprise customers", tag: "critical" },
+      { label: "Backup and recovery procedures tested — RTO and RPO defined", tag: "standard" },
+      { label: "Privacy policy current, accurate, and reflects actual data practices", tag: "critical" },
+      { label: "Data retention and deletion policy in place and enforced", tag: "standard" },
+      { label: "Customer data access audit logs available (who accessed what, when)", tag: "enhanced" },
+      { label: "Data Processing Agreements (DPAs) signed with all sub-processors", tag: "standard" },
+    ]
+  },
+  {
+    id: "vendor",
+    name: "Vendor & supply chain risk",
+    desc: "Third-party risk management and supply chain security",
+    iconPath: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z",
+    iconBg: "#FAECE7", iconStroke: "#993C1D", ringColor: "#D85A30",
+    items: [
+      { label: "Vendor register maintained — all third parties with data access documented", tag: "standard" },
+      { label: "High-risk vendors (cloud infrastructure, payment processing, identity) formally reviewed", tag: "critical" },
+      { label: "Contracts with key vendors include security and data protection clauses", tag: "standard" },
+      { label: "Software supply chain risk assessed — open source dependency scanning in CI/CD", tag: "enhanced" },
+      { label: "No critical single-vendor dependency without documented contingency plan", tag: "standard" },
+      { label: "Vendor access to production environment logged and reviewed", tag: "standard" },
+    ]
+  },
+  {
+    id: "operations",
+    name: "Security operations & response",
+    desc: "Detection, monitoring, and proven response capability",
+    iconPath: "M22 12h-4l-3 9L9 3l-3 9H2",
+    iconBg: "#EAF3DE", iconStroke: "#3B6D11", ringColor: "#639922",
+    items: [
+      { label: "Centralised logging and monitoring in place across production infrastructure", tag: "standard" },
+      { label: "Security incident and event management (SIEM) or equivalent alerting configured", tag: "enhanced" },
+      { label: "Vulnerability management program — CVEs tracked, patched within SLA", tag: "standard" },
+      { label: "Security awareness training delivered to all staff at least annually (with records)", tag: "critical" },
+      { label: "Endpoint detection and response (EDR) deployed on all company devices", tag: "enhanced" },
+      { label: "Bug bounty or responsible disclosure program in place (or roadmapped)", tag: "enhanced" },
+      { label: "Post-incident review (PIR) process defined and last PIR documented", tag: "standard" },
+    ]
+  }
+];
+
+const TOTAL = DATA.reduce((s, c) => s + c.items.length, 0);
+const state = {};
+DATA.forEach(c => c.items.forEach((_, i) => state[`${c.id}-${i}`] = false));
+
+function countByTag(tag) {
+  let done = 0, total = 0;
+  DATA.forEach(c => c.items.forEach((item, i) => {
+    if (item.tag === tag) { total++; if (state[`${c.id}-${i}`]) done++; }
+  }));
+  return { done, total };
+}
+
+function updateProgress() {
+  const done = Object.values(state).filter(Boolean).length;
+  const pct = Math.round((done / TOTAL) * 100);
+  document.getElementById('pct').textContent = pct + '%';
+  document.getElementById('prog').style.width = pct + '%';
+  document.getElementById('count-label').textContent = `${done} of ${TOTAL} controls addressed`;
+  const v = document.getElementById('verdict');
+  if (pct < 40) { v.className = 'verdict-pill v-red'; v.textContent = 'Not ready for DD'; }
+  else if (pct < 70) { v.className = 'verdict-pill v-amber'; v.textContent = 'Partial readiness'; }
+  else if (pct < 90) { v.className = 'verdict-pill v-amber'; v.textContent = 'Approaching ready'; }
+  else { v.className = 'verdict-pill v-green'; v.textContent = 'Investor-ready'; }
+
+  ['critical','standard','enhanced'].forEach(tag => {
+    const { done } = countByTag(tag);
+    document.getElementById('st-' + tag).textContent = done;
+  });
+
+  DATA.forEach(cat => {
+    const catDone = cat.items.filter((_, i) => state[`${cat.id}-${i}`]).length;
+    const catTotal = cat.items.length;
+    const fraction = catDone / catTotal;
+    const circumference = 2 * Math.PI * 12;
+    const offset = circumference * (1 - fraction);
+    const fillEl = document.getElementById(`ring-fill-${cat.id}`);
+    const labelEl = document.getElementById(`ring-label-${cat.id}`);
+    if (fillEl) { fillEl.style.strokeDashoffset = offset; }
+    if (labelEl) { labelEl.textContent = catDone + '/' + catTotal; }
+  });
+}
+
+function toggle(catId, idx) {
+  const key = `${catId}-${idx}`;
+  state[key] = !state[key];
+  const cb = document.getElementById(`cb-${catId}-${idx}`);
+  const itemEl = document.getElementById(`item-${catId}-${idx}`);
+  if (cb) cb.className = 'cb' + (state[key] ? ' checked' : '');
+  if (itemEl) itemEl.setAttribute('aria-checked', state[key]);
+  updateProgress();
+}
+
+function toggleCat(catId) {
+  const list = document.getElementById(`list-${catId}`);
+  const chev = document.getElementById(`chev-${catId}`);
+  list.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+function expandAll() { DATA.forEach(c => { document.getElementById(`list-${c.id}`).classList.add('open'); document.getElementById(`chev-${c.id}`).classList.add('open'); }); }
+function collapseAll() { DATA.forEach(c => { document.getElementById(`list-${c.id}`).classList.remove('open'); document.getElementById(`chev-${c.id}`).classList.remove('open'); }); }
+
+function checkCriticals() {
+  DATA.forEach(cat => cat.items.forEach((item, i) => {
+    if (item.tag === 'critical') {
+      state[`${cat.id}-${i}`] = true;
+      const cb = document.getElementById(`cb-${cat.id}-${i}`);
+      if (cb) cb.className = 'cb checked';
+    }
+  }));
+  updateProgress();
+}
+
+function resetAll() {
+  Object.keys(state).forEach(k => state[k] = false);
+  document.querySelectorAll('.cb').forEach(el => el.className = 'cb');
+  updateProgress();
+}
+
+function render() {
+  const container = document.getElementById('cats');
+  container.innerHTML = '';
+  const circumference = 2 * Math.PI * 12;
+
+  DATA.forEach(cat => {
+    const card = document.createElement('div');
+    card.className = 'cat-card';
+
+    const itemsHTML = cat.items.map((item, i) => `
+      <div class="item" id="item-${cat.id}-${i}" role="checkbox" aria-checked="false" tabindex="0"
+        onclick="toggle('${cat.id}',${i})"
+        onkeydown="if(event.key===' '||event.key==='Enter'){toggle('${cat.id}',${i});event.preventDefault();}">
+        <div class="cb" id="cb-${cat.id}-${i}"></div>
+        <div class="item-body">
+          <div class="item-label">${item.label}</div>
+          <span class="item-tag tag-${item.tag}">${item.tag.charAt(0).toUpperCase() + item.tag.slice(1)}</span>
+        </div>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="cat-header" onclick="toggleCat('${cat.id}')" role="button" aria-expanded="false" aria-controls="list-${cat.id}">
+        <div class="cat-icon-wrap" style="background:${cat.iconBg}">
+          <svg viewBox="0 0 24 24" stroke="${cat.iconStroke}"><path d="${cat.iconPath}"/></svg>
+        </div>
+        <div class="cat-text">
+          <div class="cat-name">${cat.name}</div>
+          <div class="cat-desc">${cat.desc}</div>
+        </div>
+        <div class="cat-right">
+          <div class="cat-progress-ring" title="${cat.items.length} controls">
+            <svg width="32" height="32" viewBox="0 0 32 32">
+              <circle class="ring-bg" cx="16" cy="16" r="12"/>
+              <circle class="ring-fill" id="ring-fill-${cat.id}" cx="16" cy="16" r="12"
+                stroke="${cat.ringColor}"
+                stroke-dasharray="${circumference}"
+                stroke-dashoffset="${circumference}"/>
+            </svg>
+            <div class="ring-label" id="ring-label-${cat.id}">0/${cat.items.length}</div>
+          </div>
+          <svg class="chevron-icon" id="chev-${cat.id}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="items-list" id="list-${cat.id}" role="group" aria-label="${cat.name} controls">
+        <div class="items-divider"></div>
+        ${itemsHTML}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+render();
+updateProgress();
+</script>
+
+</body>
+</html>
