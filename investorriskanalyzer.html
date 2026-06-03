@@ -2,1034 +2,1578 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5ELPXRM6C9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-5ELPXRM6C9');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investor Due Diligence Readiness Assessment— FRIDRICK CYBER TECH </title>
-    <meta name="description"
-        content="Track your startup's security posture across six investor-critical domains. 42 controls mapped to commercial outcomes — governance, compliance, access, data, vendors, and operations. Enhanced with persistent progress, gap analysis & export.">
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f7f7f5;
-            --bg-tertiary: #f0efe9;
-            --text-primary: #1a1a18;
-            --text-secondary: #5f5e5a;
-            --text-tertiary: #888780;
-            --border-light: rgba(0, 0, 0, 0.09);
-            --border-mid: rgba(0, 0, 0, 0.14);
-            --border-strong: rgba(0, 0, 0, 0.22);
-            --green-fill: #E1F5EE;
-            --green-text: #0F6E56;
-            --green-dark: #085041;
-            --green-mid: #1D9E75;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --warning-bg: #FFF2E6;
-            --warning-border: #FFD1B3;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-primary: #1e1e1c;
-                --bg-secondary: #252523;
-                --bg-tertiary: #2c2c2a;
-                --text-primary: #f0efe9;
-                --text-secondary: #b4b2a9;
-                --text-tertiary: #888780;
-                --border-light: rgba(255, 255, 255, 0.07);
-                --border-mid: rgba(255, 255, 255, 0.12);
-                --border-strong: rgba(255, 255, 255, 0.2);
-                --green-fill: #04342C;
-                --green-text: #5DCAA5;
-                --green-dark: #9FE1CB;
-                --warning-bg: #2E1A0C;
-                --warning-border: #8B4C24;
-            }
-        }
-
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            padding: 2rem 1rem 4rem;
-            line-height: 1.6;
-        }
-
-        .page-wrap {
-            max-width: 780px;
-            margin: 0 auto;
-        }
-
-        /* topbar, brand, etc (keep original) */
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-
-        .topbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .brand-mark {
-            width: 32px;
-            height: 32px;
-            background: var(--green-text);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .brand-mark svg {
-            width: 18px;
-            height: 18px;
-            fill: none;
-            stroke: #fff;
-            stroke-width: 2;
-        }
-
-        .brand-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: 0.02em;
-        }
-
-        .brand-tagline {
-            font-size: 11px;
-            color: var(--text-tertiary);
-        }
-
-        /* Hero card */
-        .hero-card {
-            background: var(--bg-primary);
-            border: 0.5px solid var(--border-light);
-            border-radius: var(--radius-xl);
-            padding: 2rem 2rem 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .hero-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .hero-eyebrow {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--green-text);
-            margin-bottom: 6px;
-        }
-
-        .hero-title {
-            font-size: 22px;
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 6px;
-        }
-
-        .hero-sub {
-            font-size: 14px;
-            color: var(--text-secondary);
-            max-width: 460px;
-        }
-
-        .score-block {
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .score-num {
-            font-size: 40px;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            line-height: 1;
-        }
-
-        .score-label {
-            font-size: 11px;
-            color: var(--text-tertiary);
-            margin-top: 2px;
-        }
-
-        .progress-wrap {
-            height: 5px;
-            background: var(--bg-tertiary);
-            border-radius: 99px;
-            overflow: hidden;
-            margin: 12px 0 8px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--green-mid);
-            border-radius: 99px;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 0%;
-        }
-
-        .progress-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-        }
-
-        .progress-count {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .verdict-pill {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 99px;
-            letter-spacing: 0.02em;
-        }
-
-        .v-red {
-            background: #FCEBEB;
-            color: #A32D2D;
-        }
-
-        .v-amber {
-            background: #FAEEDA;
-            color: #854F0B;
-        }
-
-        .v-green {
-            background: #EAF3DE;
-            color: #3B6D11;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .v-red {
-                background: #501313;
-                color: #F7C1C1;
-            }
-
-            .v-amber {
-                background: #412402;
-                color: #FAC775;
-            }
-
-            .v-green {
-                background: #173404;
-                color: #C0DD97;
-            }
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 1.25rem;
-        }
-
-        .stat-card {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-md);
-            padding: 12px 14px;
-            text-align: center;
-        }
-
-        .stat-num {
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 1;
-        }
-
-        .stat-lbl {
-            font-size: 11px;
-            color: var(--text-tertiary);
-            margin-top: 3px;
-        }
-
-        /* GAP ANALYSIS PANEL - NEW */
-        .gap-panel {
-            background: var(--warning-bg);
-            border-left: 4px solid #D9534F;
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.25rem;
-            transition: all 0.2s;
-        }
-
-        .gap-title {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #D9534F;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .gap-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .gap-item {
-            font-size: 13px;
-            background: rgba(0, 0, 0, 0.03);
-            padding: 5px 10px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-            cursor: pointer;
-            transition: background 0.1s;
-        }
-
-        .gap-item:hover {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        .gap-text {
-            flex: 1;
-            color: var(--text-primary);
-        }
-
-        .gap-badge {
-            font-size: 10px;
-            background: var(--bg-tertiary);
-            padding: 2px 8px;
-            border-radius: 99px;
-            color: var(--text-secondary);
-        }
-
-        .gap-empty {
-            font-size: 13px;
-            color: var(--green-text);
-            font-weight: 500;
-        }
-
-        /* cat cards (original style) */
-        .cat-card {
-            background: var(--bg-primary);
-            border: 0.5px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .cat-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 1rem 1.25rem;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.12s;
-        }
-
-        .cat-header:hover {
-            background: var(--bg-secondary);
-        }
-
-        .cat-icon-wrap {
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .cat-icon-wrap svg {
-            width: 18px;
-            height: 18px;
-            fill: none;
-            stroke-width: 1.75;
-        }
-
-        .cat-text {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .cat-name {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .cat-desc {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            margin-top: 1px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .cat-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        .cat-progress-ring {
-            position: relative;
-            width: 32px;
-            height: 32px;
-        }
-
-        .cat-progress-ring svg {
-            transform: rotate(-90deg);
-        }
-
-        .ring-bg {
-            fill: none;
-            stroke: var(--border-light);
-            stroke-width: 2.5;
-        }
-
-        .ring-fill {
-            fill: none;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 0.35s ease;
-        }
-
-        .ring-label {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 600;
-        }
-
-        .chevron-icon {
-            width: 16px;
-            height: 16px;
-            color: var(--text-tertiary);
-            transition: transform 0.2s;
-            flex-shrink: 0;
-        }
-
-        .chevron-icon.open {
-            transform: rotate(180deg);
-        }
-
-        .items-list {
-            display: none;
-            padding: 0 1.25rem 1rem;
-        }
-
-        .items-list.open {
-            display: block;
-        }
-
-        .items-divider {
-            height: 0.5px;
-            background: var(--border-light);
-            margin: 0 -1.25rem 0.875rem;
-        }
-
-        .item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 6px 0;
-            cursor: pointer;
-            border-radius: var(--radius-md);
-        }
-
-        .item:hover .item-label {
-            color: var(--text-primary);
-        }
-
-        .cb {
-            width: 18px;
-            height: 18px;
-            border-radius: 5px;
-            border: 1.5px solid var(--border-strong);
-            flex-shrink: 0;
-            margin-top: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s;
-        }
-
-        .cb.checked {
-            background: var(--green-mid);
-            border-color: var(--green-mid);
-        }
-
-        .cb.checked::after {
-            content: '';
-            position: absolute;
-            width: 5px;
-            height: 9px;
-            border: 2px solid white;
-            border-top: none;
-            border-left: none;
-            transform: rotate(40deg) translateY(-1px);
-        }
-
-        .item-body {
-            flex: 1;
-        }
-
-        .item-label {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.55;
-        }
-
-        .item-tag {
-            display: inline-block;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 1px 6px;
-            border-radius: 99px;
-            margin-top: 3px;
-        }
-
-        .tag-critical {
-            background: #FCEBEB;
-            color: #A32D2D;
-        }
-
-        .tag-standard {
-            background: #E6F1FB;
-            color: #185FA5;
-        }
-
-        .tag-enhanced {
-            background: #FAEEDA;
-            color: #854F0B;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .tag-critical {
-                background: #501313;
-                color: #F7C1C1;
-            }
-
-            .tag-standard {
-                background: #042C53;
-                color: #B5D4F4;
-            }
-
-            .tag-enhanced {
-                background: #412402;
-                color: #FAC775;
-            }
-        }
-
-        .actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 1.25rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 8px 14px;
-            border-radius: var(--radius-md);
-            border: 0.5px solid var(--border-mid);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.12s;
-        }
-
-        .btn:hover {
-            background: var(--bg-secondary);
-            border-color: var(--border-strong);
-        }
-
-        .btn-primary {
-            background: var(--green-text);
-            border-color: var(--green-text);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            background: var(--green-dark);
-        }
-
-        .toast-msg {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-primary);
-            border: 1px solid var(--border-mid);
-            border-radius: 99px;
-            padding: 8px 20px;
-            font-size: 13px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .toast-msg.show {
-            opacity: 1;
-        }
-
-        .cta-card,
-        .legend,
-        .footer {
-            /* keep original styles */
-        }
-
-        .cta-card {
-            background: var(--green-fill);
-            border: 0.5px solid rgba(15, 110, 86, 0.2);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .legend {
-            background: var(--bg-primary);
-            border: 0.5px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.5rem;
-            border-top: 0.5px solid var(--border-light);
-            flex-wrap: wrap;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 1rem 0.75rem 3rem;
-            }
-
-            .hero-card {
-                padding: 1.5rem 1.25rem;
-            }
-
-            .cat-desc {
-                display: none;
-            }
-        }
-
-        @media print {
-
-            .btn,
-            .cta-card,
-            .actions,
-            .gap-panel {
-                display: none !important;
-            }
-
-            .items-list {
-                display: block !important;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Assess startup security due diligence readiness across investor-critical controls for governance, compliance, access, data, vendors, and operations.">
+  <title>Investor Due Diligence Readiness Assessment | FRIDRICK CYBER TECH</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      color-scheme: light;
+      --page: #eef1f4;
+      --surface: #ffffff;
+      --surface-soft: #f7f8fa;
+      --surface-strong: #e8edf0;
+      --text: #182026;
+      --muted: #5f6d76;
+      --quiet: #82909a;
+      --line: rgba(24, 32, 38, 0.12);
+      --line-strong: rgba(24, 32, 38, 0.22);
+      --green: #13765d;
+      --green-strong: #0d5947;
+      --green-soft: #e2f5ef;
+      --blue: #2269a8;
+      --amber: #9b6115;
+      --red: #b33a33;
+      --violet: #6357b4;
+      --orange: #b9572d;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --shadow: 0 20px 50px rgba(17, 24, 39, 0.10);
+      --focus: 0 0 0 3px rgba(19, 118, 93, 0.22);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --page: #15191c;
+        --surface: #20262a;
+        --surface-soft: #252c30;
+        --surface-strong: #30383e;
+        --text: #f1f4f3;
+        --muted: #bcc7ca;
+        --quiet: #8f9da3;
+        --line: rgba(255, 255, 255, 0.10);
+        --line-strong: rgba(255, 255, 255, 0.18);
+        --green: #64c9aa;
+        --green-strong: #9fe0c9;
+        --green-soft: #12362f;
+        --blue: #89bde8;
+        --amber: #efbd72;
+        --red: #ef8d86;
+        --violet: #b4aef0;
+        --orange: #ed9a74;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    [tabindex]:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 26px 0 46px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      object-fit: contain;
+      padding: 4px;
+      box-shadow: 0 8px 22px rgba(17, 24, 39, 0.08);
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 0.86rem;
+      font-weight: 750;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      color: var(--quiet);
+      font-size: 0.76rem;
+      margin-top: 1px;
+    }
+
+    .topbar-link {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 14px;
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.72rem, 3.5vw, 2.75rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 670px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .score {
+      min-width: 126px;
+      padding: 14px 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      text-align: right;
+    }
+
+    .score-number {
+      font-size: 2.9rem;
+      font-weight: 850;
+      line-height: 0.95;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .score-label {
+      color: var(--quiet);
+      font-size: 0.76rem;
+      font-weight: 650;
+      margin-top: 5px;
+    }
+
+    .progress-track {
+      height: 8px;
+      margin: 22px 0 10px;
+      overflow: hidden;
+      background: var(--surface-strong);
+      border-radius: 999px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), #38a97d);
+      border-radius: inherit;
+      transition: width 220ms ease;
+    }
+
+    .progress-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill-red {
+      background: rgba(179, 58, 51, 0.12);
+      color: var(--red);
+    }
+
+    .pill-amber {
+      background: rgba(155, 97, 21, 0.14);
+      color: var(--amber);
+    }
+
+    .pill-green {
+      background: rgba(19, 118, 93, 0.15);
+      color: var(--green);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .metric-value {
+      font-size: 1.55rem;
+      font-weight: 820;
+      line-height: 1;
+    }
+
+    .metric-label {
+      color: var(--quiet);
+      font-size: 0.76rem;
+      font-weight: 650;
+      margin-top: 6px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px 12px;
+      font-size: 0.86rem;
+      font-weight: 720;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .btn:hover {
+      border-color: var(--green);
+      background: var(--surface-soft);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-strong);
+      color: #ffffff;
+    }
+
+    .btn-icon {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+
+    .gap-panel,
+    .side-panel,
+    .legend,
+    .cta {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+    }
+
+    .gap-panel {
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 820;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .panel-body {
+      padding: 14px 18px 18px;
+    }
+
+    .gap-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .gap-button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      color: var(--text);
+      cursor: pointer;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .gap-button:hover {
+      border-color: rgba(179, 58, 51, 0.35);
+    }
+
+    .gap-text {
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .gap-category {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .gap-note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 10px;
+    }
+
+    .ready-note {
+      color: var(--green);
+      font-weight: 760;
+    }
+
+    .categories {
+      display: grid;
+      gap: 10px;
+    }
+
+    .category {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .category-header {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      padding: 16px 18px;
+      text-align: left;
+    }
+
+    .category-header:hover {
+      background: var(--surface-soft);
+    }
+
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: var(--icon-bg);
+      color: var(--icon-color);
+    }
+
+    .category-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .category-title {
+      font-size: 0.97rem;
+      font-weight: 790;
+    }
+
+    .category-desc {
+      color: var(--quiet);
+      font-size: 0.8rem;
+      margin-top: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .category-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ring {
+      position: relative;
+      width: 36px;
+      height: 36px;
+    }
+
+    .ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .ring-bg,
+    .ring-fill {
+      fill: none;
+      stroke-width: 3;
+    }
+
+    .ring-bg {
+      stroke: var(--surface-strong);
+    }
+
+    .ring-fill {
+      stroke: var(--ring-color);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 220ms ease;
+    }
+
+    .ring-label {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 0.64rem;
+      font-weight: 850;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chevron {
+      width: 18px;
+      height: 18px;
+      color: var(--quiet);
+      transition: transform 160ms ease;
+    }
+
+    .category.is-open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .items {
+      display: none;
+      border-top: 1px solid var(--line);
+      padding: 10px 18px 16px;
+    }
+
+    .category.is-open .items {
+      display: grid;
+      gap: 3px;
+    }
+
+    .control {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      cursor: pointer;
+      padding: 9px 8px;
+      transition: background 120ms ease, border-color 120ms ease;
+    }
+
+    .control:hover {
+      background: var(--surface-soft);
+    }
+
+    .control.is-focused {
+      border-color: rgba(179, 58, 51, 0.35);
+      background: rgba(179, 58, 51, 0.10);
+    }
+
+    .checkbox {
+      width: 19px;
+      height: 19px;
+      display: grid;
+      place-items: center;
+      border: 1.7px solid var(--line-strong);
+      border-radius: 5px;
+      margin-top: 2px;
+      transition: background 120ms ease, border-color 120ms ease;
+    }
+
+    .control[aria-checked="true"] .checkbox {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .checkbox svg {
+      width: 13px;
+      height: 13px;
+      opacity: 0;
+      stroke: #ffffff;
+      stroke-width: 3;
+      fill: none;
+    }
+
+    .control[aria-checked="true"] .checkbox svg {
+      opacity: 1;
+    }
+
+    .control-label {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .control[aria-checked="true"] .control-label {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .tag {
+      align-self: start;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 0.68rem;
+      font-weight: 820;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tag-critical {
+      background: rgba(179, 58, 51, 0.12);
+      color: var(--red);
+    }
+
+    .tag-standard {
+      background: rgba(34, 105, 168, 0.13);
+      color: var(--blue);
+    }
+
+    .tag-enhanced {
+      background: rgba(155, 97, 21, 0.14);
+      color: var(--amber);
+    }
+
+    .side {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .side-panel,
+    .legend,
+    .cta {
+      padding: 18px;
+    }
+
+    .side-title {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      font-weight: 820;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .readiness-list,
+    .legend-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .readiness-list li,
+    .legend-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .legend-list li {
+      justify-content: flex-start;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .cta {
+      background: var(--green-soft);
+      border-color: rgba(19, 118, 93, 0.22);
+    }
+
+    .cta p {
+      margin: 8px 0 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 40px;
+      border-radius: var(--radius);
+      background: var(--green);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 780;
+      text-decoration: none;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      margin-top: 24px;
+      padding-top: 20px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 20;
+      left: 50%;
+      bottom: 22px;
+      max-width: calc(100% - 32px);
+      transform: translateX(-50%) translateY(12px);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      padding: 10px 16px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 24px, 1080px);
+        padding-top: 16px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .topbar-link {
+        display: none;
+      }
+
+      .brand-title {
+        white-space: normal;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .hero-top {
+        grid-template-columns: 1fr;
+      }
+
+      .score {
+        width: 100%;
+        text-align: left;
+      }
+
+      .progress-meta,
+      .footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-header {
+        grid-template-columns: 36px minmax(0, 1fr) auto;
+        padding: 14px;
+      }
+
+      .category-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .category-desc {
+        white-space: normal;
+      }
+
+      .category-right {
+        gap: 8px;
+      }
+
+      .control {
+        grid-template-columns: 22px minmax(0, 1fr);
+      }
+
+      .tag {
+        grid-column: 2;
+        width: fit-content;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .actions,
+      .cta,
+      .topbar-link,
+      .toast {
+        display: none !important;
+      }
+
+      .shell {
+        display: block;
+      }
+
+      .hero,
+      .category,
+      .gap-panel,
+      .side-panel,
+      .legend {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+
+      .items {
+        display: grid !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="page-wrap">
-        <div class="topbar">
-            <a href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/AQExD7RaWxtQkOPG/new-logo_white-WsG9QAURhnN4buOy.png"
-                class="topbar-brand" style="text-decoration:none;">
-                <div class="brand-mark"><svg viewBox="0 0 24 24">
-                        <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6L12 2z" />
-                    </svg></div>
-                <div>
-                    <div class="brand-name">FRIDRICK CYBER TECH</div>
-                    <div class="brand-tagline">Cybersecurity, Without the Noise.</div>
-                </div>
-            </a>
+  <main class="page">
+    <header class="topbar" aria-label="FRIDRICK CYBER TECH">
+      <a class="brand" href="https://fridrickcybertech.com/?utm_source=assessment" target="_blank" rel="noopener">
+        <img class="brand-logo" src="https://i.ibb.co/rGgPf7gZ/icon.png" alt="FRIDRICK CYBER TECH logo" width="42"
+          height="42">
+        <span class="brand-copy">
+          <span class="brand-title">FRIDRICK CYBER TECH</span>
+          <span class="brand-subtitle">Cybersecurity, without the noise.</span>
+        </span>
+      </a>
+      <a class="topbar-link" href="https://fridrickcybertech.com/contact/?utm_source=assessment" target="_blank"
+        rel="noopener">Contact advisory</a>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">Due diligence readiness tool</div>
+          <h1 id="page-title">Investor Security Risk Analyzer</h1>
+          <p class="hero-copy">Evaluate how investors, enterprise buyers, and due diligence teams may view your security
+            posture across governance, compliance, access, data, vendors, and operations.</p>
         </div>
-
-        <div class="hero-card">
-            <div class="hero-top">
-                <div>
-                    <div class="hero-eyebrow">Due Diligence Tool</div>
-                    <div class="hero-title">Investor Security Risk Analyzer</div>
-                    <div class="hero-sub">Evaluate how investors, enterprise buyers, and due diligence teams may view
-                        your security posture.</div>
-                </div>
-                <div class="score-block">
-                    <div class="score-num" id="pct">0%</div>
-                    <div class="score-label">Complete</div>
-                </div>
-            </div>
-            <div class="progress-wrap">
-                <div class="progress-fill" id="prog"></div>
-            </div>
-            <div class="progress-meta">
-                <div class="progress-count" id="count-label">0 of 42 controls addressed</div>
-                <div class="verdict-pill v-red" id="verdict">Not ready for DD</div>
-            </div>
-        </div>
-
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-num" id="st-critical">0</div>
-                <div class="stat-lbl">Critical addressed</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" id="st-standard">0</div>
-                <div class="stat-lbl">Standard addressed</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" id="st-enhanced">0</div>
-                <div class="stat-lbl">Enhanced addressed</div>
-            </div>
-        </div>
-
-        <!-- GAP ANALYSIS PANEL (dynamic) -->
-        <div id="gapPanel" class="gap-panel"></div>
-
-        <div class="legend">
-            <div class="legend-title">Control tiers</div>
-            <div class="legend-items">
-                <div class="legend-item"><span class="item-tag tag-critical">Critical</span> Deal-blocking if absent —
-                    fix
-                    before any investor conversation</div>
-                <div class="legend-item"><span class="item-tag tag-standard">Standard</span> Expected by Series A
-                    investors and
-                    enterprise procurement</div>
-                <div class="legend-item"><span class="item-tag tag-enhanced">Enhanced</span> Differentiating at Series
-                    B+ and
-                    regulated enterprise sales</div>
-            </div>
-        </div>
-
-        <div class="actions">
-            <button class="btn" onclick="window.expandAll?.()"><svg viewBox="0 0 24 24">
-                    <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-                </svg> Expand all</button>
-            <button class="btn" onclick="window.collapseAll?.()"><svg viewBox="0 0 24 24">
-                    <path d="M5 12h14" />
-                </svg> Collapse all</button>
-            <button class="btn" onclick="window.checkCriticals?.()"><svg viewBox="0 0 24 24">
-                    <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6L12 2z" />
-                </svg> Mark criticals only</button>
-            <button class="btn" onclick="window.exportSummary?.()"><svg viewBox="0 0 24 24">
-                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5 5-5M12 4v12" />
-                </svg> Copy summary</button>
-            <button class="btn" onclick="window.resetAll?.()" style="margin-left:auto;"><svg viewBox="0 0 24 24">
-                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                    <path d="M3 3v5h5" />
-                </svg> Reset</button>
-        </div>
-
-        <div id="cats"></div>
-
-        <div class="cta-card">
-            <div class="cta-text">
-                <div class="cta-head">Is your security posture slowing down deals?</div>
-                <div class="cta-body">Book a free 30-minute Risk Clarity Sprint — we'll review gaps and build a
-                    prioritised
-                    plan.</div>
-            </div>
-            <a href="https://tidycal.com/fridrick-cyber-tech/discovery-call/?utm_source=github.com" class="cta-btn"
-                style="display:inline-flex;align-items:center;gap:6px;background:var(--green-text);padding:9px 18px;border-radius:var(--radius-md);color:#fff;text-decoration:none;">Book
-                a Risk Clarity Sprint <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
-                    stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></a>
-        </div>
-        <div class="footer">
-            <div class="footer-brand">FRIDRICK – Cybersecurity, Without the Noise.</div>
-            <div style="display:flex;gap:1.25rem;"><a href="https://fridrickcybertech.com/our-advisory-models/?utm_source=github.com" class="footer-link">Advisory
-                    models</a><a href="https://fridrickcybertech.com/insights/?utm_source=github.com" class="footer-link">All Insights</a><a href="https://fridrickcybertech.com/contact/?utm_source=github.com"
-                    class="footer-link">Contact</a></div>
-        </div>
-    </div>
-    <div id="toastMsg" class="toast-msg"></div>
-
-    <script>
-        // --------------------------------------------------------------
-        // DATA MODEL (same 6 categories, 42 controls)
-        // --------------------------------------------------------------
-        const DATA = [
-            {
-                id: "governance", name: "Security governance", desc: "Policies, ownership, board-level accountability", iconPath: "M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6L12 2z", iconBg: "#E1F5EE", iconStroke: "#0F6E56", ringColor: "#1D9E75",
-                items: [
-                    { label: "Designated security owner or CISO (or named fractional equivalent)", tag: "critical" },
-                    { label: "Written Information Security Policy ratified within last 12 months", tag: "critical" },
-                    { label: "Security agenda on board or exec meeting cadence (at minimum quarterly)", tag: "standard" },
-                    { label: "Risk register maintained and reviewed at least twice yearly", tag: "standard" },
-                    { label: "Security budget line item visible in financial planning", tag: "standard" },
-                    { label: "Incident response plan documented and tested within last 12 months", tag: "critical" },
-                    { label: "Data classification policy in place (public / internal / confidential / restricted)", tag: "standard" }
-                ]
-            },
-            {
-                id: "compliance", name: "Compliance & certifications", desc: "SOC 2, ISO 27001, GDPR, CERT-In", iconPath: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z", iconBg: "#E6F1FB", iconStroke: "#185FA5", ringColor: "#378ADD",
-                items: [
-                    { label: "SOC 2 Type 1 or Type 2 report available (or formal roadmap)", tag: "critical" },
-                    { label: "ISO 27001 certification or gap assessment (if required)", tag: "enhanced" },
-                    { label: "GDPR / DPDP Act 2023 (India) data processing compliance documented", tag: "critical" },
-                    { label: "CERT-In incident reporting obligations understood and process in place", tag: "standard" },
-                    { label: "Sector-specific compliance: HIPAA, PCI-DSS, SEBI (as applicable)", tag: "enhanced" },
-                    { label: "Third-party penetration test report available (within last 12 months)", tag: "critical" },
-                    { label: "Evidence of continuous compliance monitoring (Vanta, Drata, Sprinto)", tag: "standard" }
-                ]
-            },
-            {
-                id: "access", name: "Access control & identity", desc: "MFA, RBAC, privileged access", iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", iconBg: "#FAEEDA", iconStroke: "#854F0B", ringColor: "#BA7517",
-                items: [
-                    { label: "Multi-factor authentication enforced across all critical systems", tag: "critical" },
-                    { label: "Role-based access control (RBAC) — least-privilege applied", tag: "critical" },
-                    { label: "Access review conducted at minimum quarterly — stale accounts removed", tag: "standard" },
-                    { label: "Privileged access (admin/root) documented, limited, and monitored", tag: "critical" },
-                    { label: "Offboarding procedure revokes access within 24 hours of departure", tag: "standard" },
-                    { label: "Single Sign-On (SSO) deployed across SaaS stack", tag: "standard" },
-                    { label: "Password manager policy in place for all staff", tag: "standard" }
-                ]
-            },
-            {
-                id: "data", name: "Data security & privacy", desc: "Encryption, residency, breach notification", iconPath: "M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7zM4 13a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1zM4 19a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1z", iconBg: "#EEEDFE", iconStroke: "#534AB7", ringColor: "#7F77DD",
-                items: [
-                    { label: "Customer data encrypted at rest (AES-256) and in transit (TLS 1.2+)", tag: "critical" },
-                    { label: "Data residency requirements documented and met for key customers", tag: "critical" },
-                    { label: "Backup and recovery procedures tested — RTO and RPO defined", tag: "standard" },
-                    { label: "Privacy policy current, accurate, reflects actual data practices", tag: "critical" },
-                    { label: "Data retention and deletion policy in place and enforced", tag: "standard" },
-                    { label: "Customer data access audit logs available (who accessed what, when)", tag: "enhanced" },
-                    { label: "Data Processing Agreements (DPAs) signed with all sub-processors", tag: "standard" }
-                ]
-            },
-            {
-                id: "vendor", name: "Vendor & supply chain risk", desc: "Third-party risk management", iconPath: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z", iconBg: "#FAECE7", iconStroke: "#993C1D", ringColor: "#D85A30",
-                items: [
-                    { label: "Vendor register maintained — all third parties with data access", tag: "standard" },
-                    { label: "High-risk vendors (cloud, payment, identity) formally reviewed", tag: "critical" },
-                    { label: "Contracts with key vendors include security and data protection clauses", tag: "standard" },
-                    { label: "Software supply chain risk assessed — open source dependency scanning in CI/CD", tag: "enhanced" },
-                    { label: "No critical single-vendor dependency without documented contingency plan", tag: "standard" },
-                    { label: "Vendor access to production environment logged and reviewed", tag: "standard" }
-                ]
-            },
-            {
-                id: "operations", name: "Security operations & response", desc: "Detection, monitoring, response", iconPath: "M22 12h-4l-3 9L9 3l-3 9H2", iconBg: "#EAF3DE", iconStroke: "#3B6D11", ringColor: "#639922",
-                items: [
-                    { label: "Centralised logging and monitoring across production infrastructure", tag: "standard" },
-                    { label: "Security incident and event management (SIEM) or equivalent alerting", tag: "enhanced" },
-                    { label: "Vulnerability management program — CVEs tracked, patched within SLA", tag: "standard" },
-                    { label: "Security awareness training delivered to all staff at least annually (records)", tag: "critical" },
-                    { label: "Endpoint detection and response (EDR) deployed on all company devices", tag: "enhanced" },
-                    { label: "Bug bounty or responsible disclosure program in place (or roadmapped)", tag: "enhanced" },
-                    { label: "Post-incident review (PIR) process defined and last PIR documented", tag: "standard" }
-                ]
-            }
-        ];
-
-        const TOTAL = DATA.reduce((s, c) => s + c.items.length, 0);
-        let state = {};
-        DATA.forEach(cat => cat.items.forEach((_, idx) => state[`${cat.id}-${idx}`] = false));
-
-        // localStorage keys
-        const STORAGE_KEY = "fridrick_dd_checklist";
-
-        function saveToLocalStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-        function loadFromLocalStorage() {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) { try { const parsed = JSON.parse(saved); Object.keys(parsed).forEach(k => { if (state.hasOwnProperty(k)) state[k] = !!parsed[k]; }); } catch (e) { } }
-            applyStateToDOM();
-            updateProgress(); // then reflect rings & gaps
-        }
-        function applyStateToDOM() {
-            for (let key in state) {
-                const el = document.getElementById(`cb-${key}`);
-                if (el) { if (state[key]) el.classList.add('checked'); else el.classList.remove('checked'); }
-                const itemDiv = document.getElementById(`item-${key}`);
-                if (itemDiv) itemDiv.setAttribute('aria-checked', state[key]);
-            }
-        }
-
-        function countByTag(tag) { let done = 0, total = 0; DATA.forEach(c => c.items.forEach((item, i) => { if (item.tag === tag) { total++; if (state[`${c.id}-${i}`]) done++; } })); return { done, total }; }
-        function updateProgress() {
-            const done = Object.values(state).filter(Boolean).length;
-            const pct = Math.round((done / TOTAL) * 100);
-            document.getElementById('pct').innerText = pct + '%';
-            document.getElementById('prog').style.width = pct + '%';
-            document.getElementById('count-label').innerText = `${done} of ${TOTAL} controls addressed`;
-            const v = document.getElementById('verdict');
-            if (pct < 40) { v.className = 'verdict-pill v-red'; v.innerText = 'Not ready for DD'; }
-            else if (pct < 70) { v.className = 'verdict-pill v-amber'; v.innerText = 'Partial readiness'; }
-            else if (pct < 90) { v.className = 'verdict-pill v-amber'; v.innerText = 'Approaching ready'; }
-            else { v.className = 'verdict-pill v-green'; v.innerText = 'Investor-ready'; }
-            ['critical', 'standard', 'enhanced'].forEach(tag => { let { done } = countByTag(tag); document.getElementById('st-' + tag).innerText = done; });
-            DATA.forEach(cat => {
-                const catDone = cat.items.filter((_, i) => state[`${cat.id}-${i}`]).length;
-                const catTotal = cat.items.length;
-                const fraction = catDone / catTotal;
-                const circumference = 2 * Math.PI * 12;
-                const offset = circumference * (1 - fraction);
-                const fillEl = document.getElementById(`ring-fill-${cat.id}`);
-                if (fillEl) fillEl.style.strokeDashoffset = offset;
-                const labelEl = document.getElementById(`ring-label-${cat.id}`);
-                if (labelEl) labelEl.innerText = `${catDone}/${catTotal}`;
-            });
-            updateGapPanel();       // refresh critical missing recommendations
-            saveToLocalStorage();   // auto-persist
-        }
-
-        // GAP PANEL: show missing critical controls (max 8)
-        function updateGapPanel() {
-            const missing = [];
-            DATA.forEach(cat => {
-                cat.items.forEach((item, idx) => {
-                    if (item.tag === 'critical' && !state[`${cat.id}-${idx}`]) {
-                        missing.push({ catId: cat.id, catName: cat.name, idx, label: item.label });
-                    }
-                });
-            });
-            const panel = document.getElementById('gapPanel');
-            if (missing.length === 0) {
-                panel.innerHTML = `<div class="gap-title">✅ Critical Controls Complete</div><div class="gap-empty">All critical deal-blockers are addressed — you're ready for investor review.</div>`;
-                return;
-            }
-            const listHtml = missing.slice(0, 7).map(gap => `
-    <div class="gap-item" data-cat="${gap.catId}" data-idx="${gap.idx}" onclick="window.jumpToControl('${gap.catId}',${gap.idx})">
-      <span class="gap-text">⚠️ ${gap.label}</span>
-      <span class="gap-badge">${gap.catName}</span>
-    </div>
-  `).join('');
-            const extra = missing.length > 7 ? `<div style="font-size:12px; margin-top: 4px; color: var(--text-tertiary);">+ ${missing.length - 7} other critical gaps</div>` : '';
-            panel.innerHTML = `<div class="gap-title">🚨 Urgent: Missing Critical Controls (${missing.length})</div><div class="gap-list">${listHtml}${extra}</div><div style="font-size:12px; margin-top:8px;">These items are deal-blockers. Click any to expand category & focus.</div>`;
-        }
-
-        window.jumpToControl = function (catId, itemIdx) {
-            const listEl = document.getElementById(`list-${catId}`);
-            if (listEl && !listEl.classList.contains('open')) { listEl.classList.add('open'); const chev = document.getElementById(`chev-${catId}`); if (chev) chev.classList.add('open'); }
-            const itemEl = document.getElementById(`item-${catId}-${itemIdx}`);
-            if (itemEl) { itemEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); itemEl.style.transition = 'background 0.2s'; itemEl.style.backgroundColor = 'var(--warning-border)'; setTimeout(() => { itemEl.style.backgroundColor = ''; }, 800); }
-        };
-
-        function toggle(catId, idx) {
-            const key = `${catId}-${idx}`;
-            state[key] = !state[key];
-            const cb = document.getElementById(`cb-${key}`);
-            if (cb) cb.className = 'cb' + (state[key] ? ' checked' : '');
-            const itemDiv = document.getElementById(`item-${key}`);
-            if (itemDiv) itemDiv.setAttribute('aria-checked', state[key]);
-            updateProgress();
-        }
-        function toggleCat(catId) { const l = document.getElementById(`list-${catId}`); const c = document.getElementById(`chev-${catId}`); if (l) { l.classList.toggle('open'); if (c) c.classList.toggle('open'); } }
-        function expandAll() { DATA.forEach(c => { document.getElementById(`list-${c.id}`)?.classList.add('open'); document.getElementById(`chev-${c.id}`)?.classList.add('open'); }); }
-        function collapseAll() { DATA.forEach(c => { document.getElementById(`list-${c.id}`)?.classList.remove('open'); document.getElementById(`chev-${c.id}`)?.classList.remove('open'); }); }
-        function checkCriticals() {
-            DATA.forEach(cat => cat.items.forEach((item, i) => { if (item.tag === 'critical') { const key = `${cat.id}-${i}`; state[key] = true; const cb = document.getElementById(`cb-${key}`); if (cb) cb.className = 'cb checked'; } }));
-            updateProgress();
-        }
-        function resetAll() {
-            Object.keys(state).forEach(k => state[k] = false);
-            document.querySelectorAll('.cb').forEach(el => el.className = 'cb');
-            updateProgress();
-            showToast("Checklist reset. Progress cleared.");
-        }
-        function exportSummary() {
-            const done = Object.values(state).filter(Boolean).length;
-            const criticalTotal = DATA.reduce((acc, c) => acc + c.items.filter(i => i.tag === 'critical').length, 0);
-            const criticalDone = DATA.reduce((acc, c) => acc + c.items.filter((i, idx) => i.tag === 'critical' && state[`${c.id}-${idx}`]).length, 0);
-            const missingCriticals = [];
-            DATA.forEach(c => c.items.forEach((item, idx) => { if (item.tag === 'critical' && !state[`${c.id}-${idx}`]) missingCriticals.push(`- ${item.label} (${c.name})`); }));
-            const summary = `📊 FRIDRICK Due Diligence Report\nCompletion: ${done}/${TOTAL} (${Math.round(done / TOTAL * 100)}%)\nCritical controls: ${criticalDone}/${criticalTotal}\n\n🚨 Missing Critical Controls (${missingCriticals.length}):\n${missingCriticals.slice(0, 10).join('\n')}${missingCriticals.length > 10 ? '\n...and more' : ''}\n\n⏺ Visit FRIDRICK CYBER TECH for remediation support.`;
-            navigator.clipboard.writeText(summary).then(() => showToast("Summary copied to clipboard")).catch(() => showToast("Could not copy"));
-        }
-        function showToast(msg) { const t = document.getElementById('toastMsg'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
-
-        // Render full UI
-        function render() {
-            const container = document.getElementById('cats');
-            container.innerHTML = '';
-            const circumference = 2 * Math.PI * 12;
-            DATA.forEach(cat => {
-                const card = document.createElement('div'); card.className = 'cat-card';
-                const itemsHTML = cat.items.map((item, i) => `
-      <div class="item" id="item-${cat.id}-${i}" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle('${cat.id}',${i})" onkeydown="if(event.key===' '||event.key==='Enter'){toggle('${cat.id}',${i});event.preventDefault();}">
-        <div class="cb" id="cb-${cat.id}-${i}"></div>
-        <div class="item-body"><div class="item-label">${item.label}</div><span class="item-tag tag-${item.tag}">${item.tag.charAt(0).toUpperCase() + item.tag.slice(1)}</span></div>
+        <aside class="score" aria-label="Completion score">
+          <div class="score-number" id="scoreNumber">0%</div>
+          <div class="score-label">Complete</div>
+        </aside>
       </div>
-    `).join('');
-                card.innerHTML = `
-      <div class="cat-header" onclick="toggleCat('${cat.id}')" role="button" aria-expanded="false">
-        <div class="cat-icon-wrap" style="background:${cat.iconBg}"><svg viewBox="0 0 24 24" stroke="${cat.iconStroke}"><path d="${cat.iconPath}"/></svg></div>
-        <div class="cat-text"><div class="cat-name">${cat.name}</div><div class="cat-desc">${cat.desc}</div></div>
-        <div class="cat-right"><div class="cat-progress-ring"><svg width="32" height="32" viewBox="0 0 32 32"><circle class="ring-bg" cx="16" cy="16" r="12"/><circle class="ring-fill" id="ring-fill-${cat.id}" cx="16" cy="16" r="12" stroke="${cat.ringColor}" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}"/></svg><div class="ring-label" id="ring-label-${cat.id}">0/${cat.items.length}</div></div><svg class="chevron-icon" id="chev-${cat.id}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
       </div>
-      <div class="items-list" id="list-${cat.id}"><div class="items-divider"></div>${itemsHTML}</div>
-    `;
-                container.appendChild(card);
-            });
+      <div class="progress-meta">
+        <span id="progressLabel">0 of 42 controls addressed</span>
+        <span class="pill pill-red" id="verdict">Not ready for DD</span>
+      </div>
+    </section>
+
+    <div class="shell">
+      <section aria-label="Assessment controls">
+        <div class="summary-grid" aria-label="Control type summary">
+          <div class="metric">
+            <div class="metric-value" id="criticalDone">0</div>
+            <div class="metric-label">Critical addressed</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="standardDone">0</div>
+            <div class="metric-label">Standard addressed</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="enhancedDone">0</div>
+            <div class="metric-label">Enhanced addressed</div>
+          </div>
+        </div>
+
+        <div class="actions" aria-label="Checklist actions">
+          <button class="btn btn-primary" type="button" id="markCriticalButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              aria-hidden="true">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            Mark criticals
+          </button>
+          <button class="btn" type="button" id="expandButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+            Expand all
+          </button>
+          <button class="btn" type="button" id="collapseButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              aria-hidden="true">
+              <path d="m18 15-6-6-6 6"></path>
+            </svg>
+            Collapse all
+          </button>
+          <button class="btn" type="button" id="exportButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <path d="M7 10l5 5 5-5"></path>
+              <path d="M12 15V3"></path>
+            </svg>
+            Copy report
+          </button>
+          <button class="btn" type="button" id="resetButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+              <path d="M3 3v6h6"></path>
+            </svg>
+            Reset
+          </button>
+        </div>
+
+        <section class="gap-panel" aria-live="polite" aria-labelledby="gapTitle">
+          <div class="panel-head">
+            <h2 class="panel-title" id="gapTitle">Critical gaps</h2>
+            <span class="pill pill-red" id="gapCount">0 open</span>
+          </div>
+          <div class="panel-body" id="gapPanel"></div>
+        </section>
+
+        <div class="categories" id="categories"></div>
+      </section>
+
+      <aside class="side" aria-label="Guidance">
+        <section class="side-panel">
+          <h2 class="side-title">Readiness guide</h2>
+          <ul class="readiness-list">
+            <li><span>Below 40%</span><strong>High risk</strong></li>
+            <li><span>40% to 69%</span><strong>Partial</strong></li>
+            <li><span>70% to 89%</span><strong>Close</strong></li>
+            <li><span>90% and above</span><strong>Ready</strong></li>
+          </ul>
+        </section>
+
+        <section class="legend">
+          <h2 class="side-title">Control types</h2>
+          <ul class="legend-list">
+            <li><span class="dot" style="color: var(--red);"></span>Critical: likely deal-blocker</li>
+            <li><span class="dot" style="color: var(--blue);"></span>Standard: expected operating baseline</li>
+            <li><span class="dot" style="color: var(--amber);"></span>Enhanced: mature security evidence</li>
+          </ul>
+        </section>
+
+        <section class="cta">
+          <h2 class="side-title">Need a remediation plan?</h2>
+          <p>Share the exported report and use it to prioritize the security evidence most likely to matter in
+            diligence.</p>
+          <a class="cta-link" href="https://tidycal.com/fridrick-cyber-tech/discovery-call/?utm_source=assessment"
+            target="_blank" rel="noopener">
+            Book a Revenue Trust Sprint
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      <span>FRIDRICK CYBER TECH - Cybersecurity, without the noise.</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://fridrickcybertech.com/#trustintelligence/?utm_source=github.com" target="_blank"
+          rel="noopener">Advisory models</a>
+        <a href="https://fridrickcybertech.com/articles/?utm_source=github.com" target="_blank"
+          rel="noopener">Insights</a>
+        <a href="https://fridrickcybertech.com/contact/?utm_source=github.com" target="_blank"
+          rel="noopener">Contact</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    const DATA = [
+      {
+        id: "governance",
+        name: "Security governance",
+        desc: "Policies, ownership, board-level accountability",
+        iconPath: "M12 2 4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6l-8-4Z",
+        iconBg: "rgba(19, 118, 93, 0.14)",
+        iconColor: "var(--green)",
+        ringColor: "var(--green)",
+        items: [
+          { label: "Designated security owner or CISO (or named fractional equivalent)", tag: "critical" },
+          { label: "Written Information Security Policy ratified within the last 12 months", tag: "critical" },
+          { label: "Security agenda on board or executive meeting cadence, at minimum quarterly", tag: "standard" },
+          { label: "Risk register maintained and reviewed at least twice yearly", tag: "standard" },
+          { label: "Security budget line item visible in financial planning", tag: "standard" },
+          { label: "Incident response plan documented and tested within the last 12 months", tag: "critical" },
+          { label: "Data classification policy in place for public, internal, confidential, and restricted data", tag: "standard" }
+        ]
+      },
+      {
+        id: "compliance",
+        name: "Compliance and certifications",
+        desc: "SOC 2, ISO 27001, GDPR, DPDP, CERT-In",
+        iconPath: "M9 12l2 2 4-4M7.84 4.7a3.42 3.42 0 0 0 1.94-.81 3.42 3.42 0 0 1 4.44 0 3.42 3.42 0 0 0 1.94.81 3.42 3.42 0 0 1 3.14 3.14 3.42 3.42 0 0 0 .81 1.94 3.42 3.42 0 0 1 0 4.44 3.42 3.42 0 0 0-.81 1.94 3.42 3.42 0 0 1-3.14 3.14 3.42 3.42 0 0 0-1.94.81 3.42 3.42 0 0 1-4.44 0 3.42 3.42 0 0 0-1.94-.81 3.42 3.42 0 0 1-3.14-3.14 3.42 3.42 0 0 0-.81-1.94 3.42 3.42 0 0 1 0-4.44 3.42 3.42 0 0 0 .81-1.94A3.42 3.42 0 0 1 7.84 4.7Z",
+        iconBg: "rgba(34, 105, 168, 0.13)",
+        iconColor: "var(--blue)",
+        ringColor: "var(--blue)",
+        items: [
+          { label: "SOC 2 Type 1 or Type 2 report available, or a formal roadmap exists", tag: "critical" },
+          { label: "ISO 27001 certification or gap assessment completed where required", tag: "enhanced" },
+          { label: "GDPR or DPDP Act 2023 data processing compliance documented", tag: "critical" },
+          { label: "CERT-In incident reporting obligations understood with a process in place", tag: "standard" },
+          { label: "Sector-specific compliance mapped where applicable, such as HIPAA, PCI-DSS, or SEBI", tag: "enhanced" },
+          { label: "Third-party penetration test report available from the last 12 months", tag: "critical" },
+          { label: "Evidence of continuous compliance monitoring available", tag: "standard" }
+        ]
+      },
+      {
+        id: "access",
+        name: "Access control and identity",
+        desc: "MFA, RBAC, privileged access, offboarding",
+        iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z",
+        iconBg: "rgba(155, 97, 21, 0.14)",
+        iconColor: "var(--amber)",
+        ringColor: "var(--amber)",
+        items: [
+          { label: "Multi-factor authentication enforced across all critical systems", tag: "critical" },
+          { label: "Role-based access control and least privilege applied", tag: "critical" },
+          { label: "Access review conducted at least quarterly and stale accounts removed", tag: "standard" },
+          { label: "Privileged access documented, limited, and monitored", tag: "critical" },
+          { label: "Offboarding procedure revokes access within 24 hours of departure", tag: "standard" },
+          { label: "Single sign-on deployed across the SaaS stack", tag: "standard" },
+          { label: "Password manager policy in place for all staff", tag: "standard" }
+        ]
+      },
+      {
+        id: "data",
+        name: "Data security and privacy",
+        desc: "Encryption, residency, privacy, recovery",
+        iconPath: "M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7ZM4 13a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1ZM4 19a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1Z",
+        iconBg: "rgba(99, 87, 180, 0.14)",
+        iconColor: "var(--violet)",
+        ringColor: "var(--violet)",
+        items: [
+          { label: "Customer data encrypted at rest with AES-256 and in transit with TLS 1.2 or later", tag: "critical" },
+          { label: "Data residency requirements documented and met for key customers", tag: "critical" },
+          { label: "Backup and recovery procedures tested with RTO and RPO defined", tag: "standard" },
+          { label: "Privacy policy is current, accurate, and reflects actual data practices", tag: "critical" },
+          { label: "Data retention and deletion policy in place and enforced", tag: "standard" },
+          { label: "Customer data access audit logs available, including who accessed what and when", tag: "enhanced" },
+          { label: "Data Processing Agreements signed with all sub-processors", tag: "standard" }
+        ]
+      },
+      {
+        id: "vendor",
+        name: "Vendor and supply chain risk",
+        desc: "Third-party risk, contracts, dependencies",
+        iconPath: "M3 9 12 2l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z",
+        iconBg: "rgba(185, 87, 45, 0.14)",
+        iconColor: "var(--orange)",
+        ringColor: "var(--orange)",
+        items: [
+          { label: "Vendor register maintained for all third parties with data access", tag: "standard" },
+          { label: "High-risk vendors such as cloud, payment, and identity providers formally reviewed", tag: "critical" },
+          { label: "Contracts with key vendors include security and data protection clauses", tag: "standard" },
+          { label: "Software supply chain risk assessed with dependency scanning in CI/CD", tag: "enhanced" },
+          { label: "No critical single-vendor dependency without a documented contingency plan", tag: "standard" },
+          { label: "Annual review cycle defined for critical vendors and sub-processors", tag: "standard" },
+          { label: "Vendor access to production environment logged and reviewed", tag: "standard" }
+        ]
+      },
+      {
+        id: "operations",
+        name: "Security operations and response",
+        desc: "Detection, monitoring, response, training",
+        iconPath: "M22 12h-4l-3 9L9 3l-3 9H2",
+        iconBg: "rgba(91, 138, 45, 0.15)",
+        iconColor: "#5b8a2d",
+        ringColor: "#5b8a2d",
+        items: [
+          { label: "Centralized logging and monitoring across production infrastructure", tag: "standard" },
+          { label: "SIEM or equivalent security alerting in place", tag: "enhanced" },
+          { label: "Vulnerability management program tracks CVEs and patches within SLA", tag: "standard" },
+          { label: "Security awareness training delivered to all staff at least annually with records", tag: "critical" },
+          { label: "Endpoint detection and response deployed on all company devices", tag: "enhanced" },
+          { label: "Bug bounty or responsible disclosure program in place or roadmapped", tag: "enhanced" },
+          { label: "Post-incident review process defined and last PIR documented", tag: "standard" }
+        ]
+      }
+    ];
+
+    const STORAGE_KEY = "fridrick_dd_readiness_v2";
+    const TOTAL = DATA.reduce((sum, category) => sum + category.items.length, 0);
+    const state = Object.create(null);
+    const elements = {};
+    let toastTimer = 0;
+
+    DATA.forEach((category) => {
+      category.items.forEach((item, index) => {
+        state[getKey(category.id, index)] = false;
+      });
+    });
+
+    function getKey(categoryId, index) {
+      return categoryId + "-" + index;
+    }
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function createIcon(path) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("aria-hidden", "true");
+      const shape = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      shape.setAttribute("d", path);
+      svg.appendChild(shape);
+      return svg;
+    }
+
+    function createCheckIcon() {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("aria-hidden", "true");
+      const shape = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      shape.setAttribute("d", "M20 6 9 17l-5-5");
+      svg.appendChild(shape);
+      return svg;
+    }
+
+    function renderCategories() {
+      const container = byId("categories");
+      container.textContent = "";
+      const circumference = 2 * Math.PI * 14;
+
+      DATA.forEach((category) => {
+        const article = document.createElement("article");
+        article.className = "category";
+        article.id = "category-" + category.id;
+
+        const header = document.createElement("button");
+        header.className = "category-header";
+        header.type = "button";
+        header.setAttribute("aria-expanded", "false");
+        header.setAttribute("aria-controls", "items-" + category.id);
+        header.addEventListener("click", () => toggleCategory(category.id));
+
+        const iconWrap = document.createElement("span");
+        iconWrap.className = "category-icon";
+        iconWrap.style.setProperty("--icon-bg", category.iconBg);
+        iconWrap.style.setProperty("--icon-color", category.iconColor);
+        iconWrap.appendChild(createIcon(category.iconPath));
+
+        const text = document.createElement("span");
+        const title = document.createElement("span");
+        title.className = "category-title";
+        title.textContent = category.name;
+        const desc = document.createElement("span");
+        desc.className = "category-desc";
+        desc.textContent = category.desc;
+        text.append(title, desc);
+
+        const right = document.createElement("span");
+        right.className = "category-right";
+        const ring = document.createElement("span");
+        ring.className = "ring";
+        ring.style.setProperty("--ring-color", category.ringColor);
+        ring.innerHTML = '<svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><circle class="ring-bg" cx="18" cy="18" r="14"></circle><circle class="ring-fill" cx="18" cy="18" r="14"></circle></svg><span class="ring-label">0/' + category.items.length + '</span>';
+        const ringFill = ring.querySelector(".ring-fill");
+        ringFill.style.strokeDasharray = String(circumference);
+        ringFill.style.strokeDashoffset = String(circumference);
+        elements["ring-" + category.id] = ringFill;
+        elements["ringLabel-" + category.id] = ring.querySelector(".ring-label");
+
+        const chev = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        chev.setAttribute("viewBox", "0 0 24 24");
+        chev.setAttribute("fill", "none");
+        chev.setAttribute("stroke", "currentColor");
+        chev.setAttribute("stroke-width", "2.2");
+        chev.setAttribute("aria-hidden", "true");
+        chev.classList.add("chevron");
+        const chevPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        chevPath.setAttribute("d", "m6 9 6 6 6-6");
+        chev.appendChild(chevPath);
+
+        right.append(ring, chev);
+        header.append(iconWrap, text, right);
+
+        const items = document.createElement("div");
+        items.className = "items";
+        items.id = "items-" + category.id;
+
+        category.items.forEach((item, index) => {
+          const key = getKey(category.id, index);
+          const control = document.createElement("div");
+          control.className = "control";
+          control.id = "control-" + key;
+          control.setAttribute("role", "checkbox");
+          control.setAttribute("aria-checked", "false");
+          control.setAttribute("tabindex", "0");
+          control.addEventListener("click", () => toggleControl(category.id, index));
+          control.addEventListener("keydown", (event) => {
+            if (event.key === " " || event.key === "Enter") {
+              event.preventDefault();
+              toggleControl(category.id, index);
+            }
+          });
+
+          const checkbox = document.createElement("span");
+          checkbox.className = "checkbox";
+          checkbox.appendChild(createCheckIcon());
+
+          const label = document.createElement("span");
+          label.className = "control-label";
+          label.textContent = item.label;
+
+          const tag = document.createElement("span");
+          tag.className = "tag tag-" + item.tag;
+          tag.textContent = item.tag;
+
+          control.append(checkbox, label, tag);
+          items.appendChild(control);
+          elements["control-" + key] = control;
+        });
+
+        article.append(header, items);
+        container.appendChild(article);
+        elements["category-" + category.id] = article;
+        elements["categoryHeader-" + category.id] = header;
+      });
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+        Object.keys(saved).forEach((key) => {
+          if (Object.prototype.hasOwnProperty.call(state, key)) {
+            state[key] = Boolean(saved[key]);
+          }
+        });
+      } catch (error) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (error) {
+        showToast("Progress could not be saved in this browser.");
+      }
+    }
+
+    function syncControlStates() {
+      Object.keys(state).forEach((key) => {
+        const control = elements["control-" + key];
+        if (control) {
+          control.setAttribute("aria-checked", String(state[key]));
         }
+      });
+    }
 
-        // expose globals
-        window.toggle = toggle; window.toggleCat = toggleCat; window.expandAll = expandAll; window.collapseAll = collapseAll;
-        window.checkCriticals = checkCriticals; window.resetAll = resetAll; window.exportSummary = exportSummary; window.jumpToControl = window.jumpToControl;
+    function countByTag(tag) {
+      return DATA.reduce((result, category) => {
+        category.items.forEach((item, index) => {
+          if (item.tag === tag) {
+            result.total += 1;
+            if (state[getKey(category.id, index)]) result.done += 1;
+          }
+        });
+        return result;
+      }, { done: 0, total: 0 });
+    }
 
-        render();
-        loadFromLocalStorage();
-        updateProgress();
-    </script>
+    function updateProgress() {
+      const done = Object.values(state).filter(Boolean).length;
+      const pct = Math.round((done / TOTAL) * 100);
+      const scoreNumber = byId("scoreNumber");
+      const progressFill = byId("progressFill");
+      const progressLabel = byId("progressLabel");
+      const verdict = byId("verdict");
+      const circumference = 2 * Math.PI * 14;
+
+      scoreNumber.textContent = pct + "%";
+      progressFill.style.width = pct + "%";
+      progressLabel.textContent = done + " of " + TOTAL + " controls addressed";
+
+      if (pct < 40) {
+        verdict.className = "pill pill-red";
+        verdict.textContent = "Not ready for DD";
+      } else if (pct < 70) {
+        verdict.className = "pill pill-amber";
+        verdict.textContent = "Partial readiness";
+      } else if (pct < 90) {
+        verdict.className = "pill pill-amber";
+        verdict.textContent = "Approaching ready";
+      } else {
+        verdict.className = "pill pill-green";
+        verdict.textContent = "Investor-ready";
+      }
+
+      ["critical", "standard", "enhanced"].forEach((tag) => {
+        const result = countByTag(tag);
+        byId(tag + "Done").textContent = String(result.done);
+      });
+
+      DATA.forEach((category) => {
+        const doneInCategory = category.items.filter((item, index) => state[getKey(category.id, index)]).length;
+        const offset = circumference * (1 - doneInCategory / category.items.length);
+        elements["ring-" + category.id].style.strokeDashoffset = String(offset);
+        elements["ringLabel-" + category.id].textContent = doneInCategory + "/" + category.items.length;
+      });
+
+      updateGapPanel();
+      saveState();
+    }
+
+    function updateGapPanel() {
+      const panel = byId("gapPanel");
+      const gapCount = byId("gapCount");
+      const missing = [];
+      panel.textContent = "";
+
+      DATA.forEach((category) => {
+        category.items.forEach((item, index) => {
+          if (item.tag === "critical" && !state[getKey(category.id, index)]) {
+            missing.push({ category, item, index });
+          }
+        });
+      });
+
+      if (!missing.length) {
+        gapCount.className = "pill pill-green";
+        gapCount.textContent = "Complete";
+        const note = document.createElement("p");
+        note.className = "ready-note";
+        note.textContent = "All critical deal-blockers are addressed. You are ready to package evidence for investor review.";
+        panel.appendChild(note);
+        return;
+      }
+
+      gapCount.className = "pill pill-red";
+      gapCount.textContent = missing.length + " open";
+
+      const list = document.createElement("div");
+      list.className = "gap-list";
+
+      missing.slice(0, 7).forEach((gap) => {
+        const button = document.createElement("button");
+        button.className = "gap-button";
+        button.type = "button";
+        button.addEventListener("click", () => jumpToControl(gap.category.id, gap.index));
+
+        const label = document.createElement("span");
+        label.className = "gap-text";
+        label.textContent = gap.item.label;
+
+        const category = document.createElement("span");
+        category.className = "gap-category";
+        category.textContent = gap.category.name;
+
+        button.append(label, category);
+        list.appendChild(button);
+      });
+
+      panel.appendChild(list);
+
+      const note = document.createElement("div");
+      note.className = "gap-note";
+      note.textContent = missing.length > 7
+        ? (missing.length - 7) + " additional critical gaps are hidden. Complete visible critical gaps to reveal the rest."
+        : "Click a gap to open its category and focus the exact control.";
+      panel.appendChild(note);
+    }
+
+    function toggleControl(categoryId, index) {
+      const key = getKey(categoryId, index);
+      state[key] = !state[key];
+      syncControlStates();
+      updateProgress();
+    }
+
+    function toggleCategory(categoryId, forceOpen) {
+      const category = elements["category-" + categoryId];
+      const header = elements["categoryHeader-" + categoryId];
+      const nextOpen = typeof forceOpen === "boolean" ? forceOpen : !category.classList.contains("is-open");
+      category.classList.toggle("is-open", nextOpen);
+      header.setAttribute("aria-expanded", String(nextOpen));
+    }
+
+    function setAllCategories(open) {
+      DATA.forEach((category) => toggleCategory(category.id, open));
+    }
+
+    function markCriticals() {
+      DATA.forEach((category) => {
+        category.items.forEach((item, index) => {
+          if (item.tag === "critical") state[getKey(category.id, index)] = true;
+        });
+      });
+      syncControlStates();
+      updateProgress();
+      showToast("Critical controls marked as addressed.");
+    }
+
+    function resetAll() {
+      Object.keys(state).forEach((key) => {
+        state[key] = false;
+      });
+      syncControlStates();
+      updateProgress();
+      showToast("Checklist reset. Progress cleared.");
+    }
+
+    function buildReport() {
+      const done = Object.values(state).filter(Boolean).length;
+      const pct = Math.round((done / TOTAL) * 100);
+      const critical = countByTag("critical");
+      const standard = countByTag("standard");
+      const enhanced = countByTag("enhanced");
+      const missingCriticals = [];
+
+      DATA.forEach((category) => {
+        category.items.forEach((item, index) => {
+          if (item.tag === "critical" && !state[getKey(category.id, index)]) {
+            missingCriticals.push("- " + item.label + " (" + category.name + ")");
+          }
+        });
+      });
+
+      return [
+        "FRIDRICK CYBER TECH - Due Diligence Readiness Report",
+        "Completion: " + done + "/" + TOTAL + " (" + pct + "%)",
+        "Critical controls: " + critical.done + "/" + critical.total,
+        "Standard controls: " + standard.done + "/" + standard.total,
+        "Enhanced controls: " + enhanced.done + "/" + enhanced.total,
+        "",
+        "Missing critical controls (" + missingCriticals.length + "):",
+        missingCriticals.length ? missingCriticals.join("\n") : "None",
+        "",
+        "Next step: prioritize missing critical controls before investor or enterprise buyer review."
+      ].join("\n");
+    }
+
+    async function copyReport() {
+      const report = buildReport();
+      try {
+        await navigator.clipboard.writeText(report);
+        showToast("Readiness report copied to clipboard.");
+      } catch (error) {
+        const temp = document.createElement("textarea");
+        temp.className = "sr-only";
+        temp.value = report;
+        document.body.appendChild(temp);
+        temp.select();
+        const copied = document.execCommand("copy");
+        temp.remove();
+        showToast(copied ? "Readiness report copied to clipboard." : "Copy failed. Select and copy the report manually.");
+      }
+    }
+
+    function jumpToControl(categoryId, index) {
+      toggleCategory(categoryId, true);
+      const key = getKey(categoryId, index);
+      const control = elements["control-" + key];
+      if (!control) return;
+      control.scrollIntoView({ behavior: "smooth", block: "center" });
+      control.classList.add("is-focused");
+      control.focus({ preventScroll: true });
+      window.setTimeout(() => control.classList.remove("is-focused"), 1300);
+    }
+
+    function showToast(message) {
+      const toast = byId("toast");
+      window.clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
+    }
+
+    function bindActions() {
+      byId("markCriticalButton").addEventListener("click", markCriticals);
+      byId("expandButton").addEventListener("click", () => setAllCategories(true));
+      byId("collapseButton").addEventListener("click", () => setAllCategories(false));
+      byId("exportButton").addEventListener("click", copyReport);
+      byId("resetButton").addEventListener("click", resetAll);
+    }
+
+    renderCategories();
+    bindActions();
+    loadState();
+    syncControlStates();
+    updateProgress();
+  </script>
 </body>
 
 </html>
