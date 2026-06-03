@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -660,6 +661,38 @@
       padding: 18px;
     }
 
+    .session-card {
+      display: grid;
+      gap: 12px;
+    }
+
+    .session-meta {
+      display: grid;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .session-id {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      color: var(--text);
+      padding: 8px 10px;
+      font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.78rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .session-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
     .side-title {
       margin: 0 0 10px;
       font-size: 0.9rem;
@@ -1005,6 +1038,24 @@
       </section>
 
       <aside class="side" aria-label="Guidance">
+        <section class="side-panel session-card">
+          <h2 class="side-title">Your session</h2>
+          <div class="session-meta">
+            <span>Progress is isolated to this session and browser.</span>
+            <code class="session-id" id="sessionIdLabel">Loading...</code>
+          </div>
+          <div class="session-actions">
+            <button class="btn" type="button" id="copySessionButton">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              Copy link
+            </button>
+            <button class="btn" type="button" id="newSessionButton">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+              New session
+            </button>
+          </div>
+        </section>
+
         <section class="side-panel">
           <h2 class="side-title">Readiness guide</h2>
           <ul class="readiness-list">
@@ -1170,10 +1221,13 @@
       }
     ];
 
-    const STORAGE_KEY = "fridrick_dd_readiness_v2";
+    const APP_PREFIX = "fridrick_dd_readiness_v3";
+    const SESSION_PARAM = "session";
+    const ACTIVE_SESSION_KEY = APP_PREFIX + ":active_session";
     const TOTAL = DATA.reduce((sum, category) => sum + category.items.length, 0);
     const state = Object.create(null);
     const elements = {};
+    let activeSessionId = "";
     let toastTimer = 0;
 
     DATA.forEach((category) => {
@@ -1188,6 +1242,58 @@
 
     function byId(id) {
       return document.getElementById(id);
+    }
+
+    function sanitizeSessionId(value) {
+      return String(value || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 36);
+    }
+
+    function generateSessionId() {
+      const bytes = new Uint8Array(12);
+      if (window.crypto && window.crypto.getRandomValues) {
+        window.crypto.getRandomValues(bytes);
+      } else {
+        for (let index = 0; index < bytes.length; index += 1) {
+          bytes[index] = Math.floor(Math.random() * 256);
+        }
+      }
+      return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    function getSessionStorageKey(sessionId) {
+      return APP_PREFIX + ":session:" + sessionId + ":state";
+    }
+
+    function getSessionLink(sessionId) {
+      const url = new URL(window.location.href);
+      url.searchParams.set(SESSION_PARAM, sessionId);
+      return url.toString();
+    }
+
+    function updateSessionUrl(sessionId) {
+      const nextUrl = getSessionLink(sessionId);
+      window.history.replaceState({ sessionId }, "", nextUrl);
+    }
+
+    function resetStateObject() {
+      Object.keys(state).forEach((key) => {
+        state[key] = false;
+      });
+    }
+
+    function initializeSession() {
+      const params = new URLSearchParams(window.location.search);
+      const urlSessionId = sanitizeSessionId(params.get(SESSION_PARAM));
+      const storedSessionId = sanitizeSessionId(localStorage.getItem(ACTIVE_SESSION_KEY));
+      activeSessionId = urlSessionId || storedSessionId || generateSessionId();
+      localStorage.setItem(ACTIVE_SESSION_KEY, activeSessionId);
+      updateSessionUrl(activeSessionId);
+      updateSessionLabel();
+    }
+
+    function updateSessionLabel() {
+      const label = byId("sessionIdLabel");
+      if (label) label.textContent = activeSessionId;
     }
 
     function createIcon(path) {
@@ -1313,21 +1419,23 @@
     }
 
     function loadState() {
+      resetStateObject();
       try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+        const saved = JSON.parse(localStorage.getItem(getSessionStorageKey(activeSessionId)) || "{}");
         Object.keys(saved).forEach((key) => {
           if (Object.prototype.hasOwnProperty.call(state, key)) {
             state[key] = Boolean(saved[key]);
           }
         });
       } catch (error) {
-        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(getSessionStorageKey(activeSessionId));
       }
     }
 
     function saveState() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(ACTIVE_SESSION_KEY, activeSessionId);
+        localStorage.setItem(getSessionStorageKey(activeSessionId), JSON.stringify(state));
       } catch (error) {
         showToast("Progress could not be saved in this browser.");
       }
@@ -1491,7 +1599,36 @@
       });
       syncControlStates();
       updateProgress();
-      showToast("Checklist reset. Progress cleared.");
+      showToast("Current session reset. Progress cleared.");
+    }
+
+    async function copySessionLink() {
+      const link = getSessionLink(activeSessionId);
+      try {
+        await navigator.clipboard.writeText(link);
+        showToast("Session link copied.");
+      } catch (error) {
+        const temp = document.createElement("textarea");
+        temp.className = "sr-only";
+        temp.value = link;
+        document.body.appendChild(temp);
+        temp.select();
+        const copied = document.execCommand("copy");
+        temp.remove();
+        showToast(copied ? "Session link copied." : "Copy failed. Copy the browser URL instead.");
+      }
+    }
+
+    function startNewSession() {
+      activeSessionId = generateSessionId();
+      localStorage.setItem(ACTIVE_SESSION_KEY, activeSessionId);
+      updateSessionUrl(activeSessionId);
+      updateSessionLabel();
+      resetStateObject();
+      syncControlStates();
+      updateProgress();
+      setAllCategories(false);
+      showToast("New isolated session started.");
     }
 
     function buildReport() {
@@ -1512,6 +1649,7 @@
 
       return [
         "FRIDRICK CYBER TECH - Due Diligence Readiness Report",
+        "Session ID: " + activeSessionId,
         "Completion: " + done + "/" + TOTAL + " (" + pct + "%)",
         "Critical controls: " + critical.done + "/" + critical.total,
         "Standard controls: " + standard.done + "/" + standard.total,
@@ -1566,10 +1704,13 @@
       byId("collapseButton").addEventListener("click", () => setAllCategories(false));
       byId("exportButton").addEventListener("click", copyReport);
       byId("resetButton").addEventListener("click", resetAll);
+      byId("copySessionButton").addEventListener("click", copySessionLink);
+      byId("newSessionButton").addEventListener("click", startNewSession);
     }
 
     renderCategories();
     bindActions();
+    initializeSession();
     loadState();
     syncControlStates();
     updateProgress();
